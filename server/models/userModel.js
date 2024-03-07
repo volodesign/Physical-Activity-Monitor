@@ -46,12 +46,12 @@ const userSchema = new mongoose.Schema({
         trim: true
     },
     weight: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     },
     height: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     }

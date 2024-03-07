@@ -1,6 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
@@ -10,6 +12,11 @@ const PORT = 3232;
 app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
 
 app.use(express.json());
+app.use(cookieParser());
+app.use(cors({
+  origin : ["http://localhost:3000"],
+  credentials: true
+}));
 
 //connect to mongo
 mongoose.connect(process.env.MDB_CONNECT)
