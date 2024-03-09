@@ -1,19 +1,31 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import LogOut from '../Auth/LogOut';
 import AuthContext from '../../context/AuthContext';
 
 export default function Navbar() {
 
 const {loggedIn} = useContext(AuthContext);
+const location = useLocation();
 
   return (
-    <div>
+    <div className='header'>
+      <p>appname</p>
         {
           loggedIn === false && (
             <>
-            <Link to="/signup">Signup</Link>
-            <Link to="/signin">Signin</Link>
+            <div className='link-wrap'>
+            {(location.pathname === '/signin' || location.pathname === '/reset-password') && (
+              <>
+              <Link to="/signup">Create an account</Link>
+              </>
+            )}
+              {location.pathname === '/signup' && (
+              <>
+              <Link to="/signin">Log in</Link>
+              </>
+            )}
+            </div>
             </>
           )
         }
@@ -25,9 +37,6 @@ const {loggedIn} = useContext(AuthContext);
             </>
           )
         }
-
- 
-
     </div>
   )
 }

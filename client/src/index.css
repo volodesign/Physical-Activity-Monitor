@@ -1,21 +1,118 @@
-.Form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
 }
 
-label,input{
-    display:flex;
-    flex-direction:column;
-    margin-bottom: 8px;
-  }
+* {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+}
 
-  input {
-    height: 40px;
-    width: 360px;
-  }
+.header {
+  max-width: 1080px;
+  width: 100%;
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
 
-  button {
-    width: 100%;
-  }
+.container {
+  padding: 0 20px;
+  overflow: hidden;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  margin-top: 64px;
+  margin-bottom: 80px;
+  max-width: 360px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.title-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 16px;
+}
+
+.link-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+p {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.solid-text {
+  color: var(--neutral-12);
+}
+
+.subtle-text {
+  color: var(--neutral-11);
+}
+
+.small {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+a {
+  color: var(--neutral-12);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+a:hover {
+  opacity: 0.82;
+}
+
+form > button {
+  margin-top: 16px;
+}

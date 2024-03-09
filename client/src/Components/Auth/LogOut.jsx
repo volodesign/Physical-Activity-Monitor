@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useContext } from 'react'
 import AuthContext from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Button from '../Elements/Button';
 
 export default function LogOut() {
 
@@ -17,6 +18,6 @@ export default function LogOut() {
     }
 
   return (
-    <button onClick={logOut}>Logout</button>
+    <Button onClick={logOut} className="soft-neutral small">Logout</Button>
   )
 }

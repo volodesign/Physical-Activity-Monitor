@@ -1,0 +1,35 @@
+.solid-neutral {
+    background-color: var(--neutral-12);
+    border: none;
+    color: var(--neutral-1);
+}
+
+.solid-neutral:hover {
+    opacity: 0.82;
+}
+
+.soft-neutral {
+    background-color: var(--neutral-alpha-3);
+    border: none;
+    color: var(--neutral-12);
+}
+
+.soft-neutral:hover {
+    background-color: var(--neutral-alpha-4);
+}
+
+.medium {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.small {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    height: 32px;
+    border-radius: 6px;
+}

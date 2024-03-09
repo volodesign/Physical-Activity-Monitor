@@ -123,5 +123,21 @@ router.get("/loggedIn", (req,res) => {
     }
 })
 
+//check if user already exists
+router.get('/check-email', async (req, res) => {
+    const { email } = req.body;
+    try {
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        res.json({ exists: true });
+      } else {
+        res.json({ exists: false });
+      }
+    } catch (error) {
+      console.error('Error checking email:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
 
 module.exports = router;

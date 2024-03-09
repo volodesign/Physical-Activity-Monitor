@@ -1,0 +1,60 @@
+.input-base {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+label {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: var(--neutral-12);
+}
+
+input, select {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    padding: 0px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--neutral-alpha-6);
+    height: 40px;
+    background-color: var(--panel-1);
+}
+
+input:hover, select:hover {
+    background-color: var(--panel-3);
+}
+
+input:focus, select:focus {
+    background-color: var(--panel-1);
+    outline: none;
+    border: 1px solid var(--neutral-12);
+    box-shadow: 0px 0px 0px 3px var(--neutral-alpha-4);
+}
+
+input:invalid[focused="true"], select:invalid[focused="true"] {
+    border: 1px solid var(--danger-9);
+}
+
+.hint {
+    display: none;
+}
+
+input:invalid[focused="true"] ~ .hint, select:invalid[focused="true"] ~ .hint  {
+    display: block;
+}
+
+.hint {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: var(--neutral-11);
+}
+
+.errorMessage {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: var(--danger-11);
+}
