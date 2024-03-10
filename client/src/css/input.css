@@ -1,4 +1,5 @@
 .input-base {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -57,4 +58,25 @@ input:invalid[focused="true"] ~ .hint, select:invalid[focused="true"] ~ .hint  {
     line-height: 16px;
     font-weight: 500;
     color: var(--danger-11);
+}
+
+
+.eye-button {
+    position: absolute;
+    border: none;
+    background: none;
+    top: 46px;
+    height: 24px;
+    width: 24px;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.eye-button > i {
+    color: var(--neutral-9);
+}
+
+.eye-button:hover > i {
+    color: var(--neutral-12);
 }

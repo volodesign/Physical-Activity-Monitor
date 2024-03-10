@@ -5,6 +5,10 @@ import Register from './Components/Auth/Register';
 import Login from './Components/Auth/Login';
 import Dashboard from './Components/Dashboard';
 import AuthContext from './context/AuthContext';
+import ForgotPassword from './Components/Auth/ForgotPassword';
+import ResetPassword from './Components/Auth/ResetPassword';
+import ForgotPasswordSuccess from './Components/Auth/ForgotPasswordSuccess';
+import ResetPasswordSuccess from './Components/Auth/ResetPasswordSuccess';
 
 
 function Router() {
@@ -23,6 +27,10 @@ function Router() {
             <Route path="/signup" element={<Register />} />
             <Route path="/signin" element={<Login />} />
             <Route path="/dashboard" element={<Navigate to="/signin" />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/forgot-password-success" element={<ForgotPasswordSuccess />} />
+            <Route path="/reset-password-success" element={<ResetPasswordSuccess />} />
             </>
         )}
         {

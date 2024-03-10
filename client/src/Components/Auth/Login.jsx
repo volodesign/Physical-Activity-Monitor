@@ -16,6 +16,7 @@ export default function Login() {
   const {getLoggedIn} = useContext(AuthContext);
   const navigate = useNavigate();
 
+
   const handleFieldFocus = () => {
     setError("");
   };
@@ -70,10 +71,11 @@ export default function Login() {
             placeholder='Enter your password'
             errorMessage="Invalid password"
             onFocus={handleFieldFocus}
+            isPassword={true}
           />
 
           <div className='link-wrap'>
-            <Link to="/reset-password">Forgot password?</Link>
+            <Link to="/forgot-password">Forgot password?</Link>
           </div>
 
           <Button type="Submit" className="solid-neutral medium">Login</Button>

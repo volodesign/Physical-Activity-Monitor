@@ -87,7 +87,7 @@ export default function Register() {
             errorMessage="Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character, with a minimum length of 8 characters."
             required={true}
             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-
+            isPassword={true}
           />
 
         <div className="section-text">

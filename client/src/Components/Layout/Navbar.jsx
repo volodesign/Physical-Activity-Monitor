@@ -10,17 +10,16 @@ const location = useLocation();
 
   return (
     <div className='header'>
-      <p>appname</p>
+      <Link to="/">AppName</Link>
         {
           loggedIn === false && (
             <>
             <div className='link-wrap'>
-            {(location.pathname === '/signin' || location.pathname === '/reset-password') && (
+            {location.pathname === '/signin' ? (
               <>
               <Link to="/signup">Create an account</Link>
               </>
-            )}
-              {location.pathname === '/signup' && (
+            ) : (
               <>
               <Link to="/signin">Log in</Link>
               </>
@@ -29,6 +28,7 @@ const location = useLocation();
             </>
           )
         }
+        
         {
           loggedIn === true && (
             <>
