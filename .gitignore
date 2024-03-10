@@ -23,3 +23,4 @@
 /client/varn-error.log*
 
 /server/.env
+/server/test.txt
