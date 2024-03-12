@@ -19,24 +19,24 @@ export default function ResetPassword() {
       await axios.post(`http://localhost:3232/auth/reset-password/${token}`, { newPassword });
       navigate("/reset-password-success");
 
-      
+
     } catch (err) {
-        setError("Something went wrong");
+      setError("Something went wrong");
 
     }
   }
 
   return (
     <>
-        <div className="form-container">
+      <div className="form-container">
 
-<div className="title-text">
-  <h1 className='solid-text'>Create new password</h1>
-  <p className='subtle-text'>Create a new password for your account.</p>
-</div>
+        <div className="title-text">
+          <h1 className='solid-text'>Create new password</h1>
+          <p className='subtle-text'>Create a new password for your account.</p>
+        </div>
 
-<form onSubmit={resetPassword}>
-          <InputText 
+        <form onSubmit={resetPassword}>
+          <InputText
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             label="Password"
@@ -48,13 +48,13 @@ export default function ResetPassword() {
             isPassword={true}
           />
 
-  <Button type="Submit" className="solid-neutral medium">Update password</Button>
-  
-</form>
-{error && <Alert className="alert error">{error}</Alert> }
+          <Button type="Submit" className="solid-neutral medium">Update password</Button>
+
+        </form>
+        {error && <Alert className="alert error">{error}</Alert>}
 
 
-</div>
+      </div>
     </>
   )
 }

@@ -15,11 +15,11 @@ export default function ForgotPassword() {
     setError("");
   };
 
-  async function forgotPassword (e){
-    e.preventDefault ();
+  async function forgotPassword(e) {
+    e.preventDefault();
 
     try {
-      await axios.post("http://localhost:3232/auth/forgot-password", {email});
+      await axios.post("http://localhost:3232/auth/forgot-password", { email });
       navigate("/forgot-password-success");
 
     } catch (err) {
@@ -33,33 +33,33 @@ export default function ForgotPassword() {
 
   return (
     <>
-    <div className="form-container">
+      <div className="form-container">
 
-      <div className="title-text">
-        <h1 className='solid-text'>Recover password</h1>
-        <p className='subtle-text'>Enter your email and we will send you a link to recover your password.</p>
+        <div className="title-text">
+          <h1 className='solid-text'>Recover password</h1>
+          <p className='subtle-text'>Enter your email and we will send you a link to recover your password.</p>
+        </div>
+
+        <form onSubmit={forgotPassword}>
+          <InputText
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            label="Email"
+            type="email"
+            placeholder='Enter your email'
+            errorMessage="Invalid email"
+            onFocus={handleFieldFocus}
+          />
+
+          <Button type="Submit" className="solid-neutral medium">Reset password</Button>
+
+        </form>
+
+        {error && <Alert className="alert error">{error}</Alert>}
+
       </div>
-     
-      <form onSubmit={forgotPassword}>
-        <InputText 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          label="Email"
-          type="email"
-          placeholder='Enter your email'
-          errorMessage="Invalid email"
-          onFocus={handleFieldFocus}
-        />
-
-        <Button type="Submit" className="solid-neutral medium">Reset password</Button>
-        
-      </form>
-
-      {error && <Alert className="alert error">{error}</Alert> }
-
-    </div>
 
 
-  </>
+    </>
   )
 }

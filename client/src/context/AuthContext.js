@@ -7,21 +7,21 @@ function AuthContextProvider(props) {
 
     const [loggedIn, setLoggedIn] = useState(undefined);
 
-    async function getLoggedIn(){
+    async function getLoggedIn() {
         const loggedInRes = await axios.get("http://localhost:3232/auth/loggedIn");
         setLoggedIn(loggedInRes.data);
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getLoggedIn();
-    },[]);
+    }, []);
 
-  return (
-        <AuthContext.Provider value={{loggedIn, getLoggedIn}}>
+    return (
+        <AuthContext.Provider value={{ loggedIn, getLoggedIn }}>
             {props.children}
         </AuthContext.Provider>
-  )
+    )
 }
 
 export default AuthContext;
-export {AuthContextProvider};
+export { AuthContextProvider };

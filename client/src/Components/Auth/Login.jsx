@@ -13,7 +13,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const {getLoggedIn} = useContext(AuthContext);
+  const { getLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
 
@@ -22,8 +22,8 @@ export default function Login() {
   };
 
 
-  async function login (e){
-    e.preventDefault ();
+  async function login(e) {
+    e.preventDefault();
 
     try {
       const loginData = {
@@ -51,9 +51,9 @@ export default function Login() {
           <h1 className='solid-text'>Login to your account</h1>
           <p className='subtle-text'>Enter your credentials to login to your account.</p>
         </div>
-       
+
         <form onSubmit={login}>
-          <InputText 
+          <InputText
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             label="Email"
@@ -63,7 +63,7 @@ export default function Login() {
             onFocus={handleFieldFocus}
           />
 
-          <InputText 
+          <InputText
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             label="Password"
@@ -79,16 +79,16 @@ export default function Login() {
           </div>
 
           <Button type="Submit" className="solid-neutral medium">Login</Button>
-          
+
         </form>
 
-        {error && <Alert className="alert error">{error}</Alert> }
+        {error && <Alert className="alert error">{error}</Alert>}
 
       </div>
 
 
     </>
-      
+
 
   )
 }

@@ -10,7 +10,7 @@ function App() {
   return (
     <AuthContextProvider>
       <div className="container">
-      <Router />
+        <Router />
       </div>
     </AuthContextProvider>
   );

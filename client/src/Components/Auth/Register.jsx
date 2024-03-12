@@ -27,13 +27,13 @@ export default function Register() {
 
   const [error, setError] = useState("");
   const [existedUser, setExistingUser] = useState(false);
-  
-  const {getLoggedIn} = useContext(AuthContext);
+
+  const { getLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
 
-  async function register (e){
-    e.preventDefault ();
+  async function register(e) {
+    e.preventDefault();
 
     try {
       const registerData = {
@@ -60,16 +60,16 @@ export default function Register() {
   return (
     <>
       <div className="form-container">
-        
+
         <div className="title-text">
           <h1 className='solid-text'>Create an account</h1>
           <p className='subtle-text'>Fill the form below to create your account.</p>
         </div>
-        {error && <Alert className="alert error">{error}</Alert> }
+        {error && <Alert className="alert error">{error}</Alert>}
         <form onSubmit={register}>
-          <InputText 
+          <InputText
             value={email}
-            onChange={(e) => {setEmail(e.target.value); setExistingUser(false);}}
+            onChange={(e) => { setEmail(e.target.value); setExistingUser(false); }}
             label="Email"
             type="email"
             placeholder='Add your email'
@@ -78,7 +78,7 @@ export default function Register() {
             emailExists={existedUser}
           />
 
-          <InputText 
+          <InputText
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             label="Password"
@@ -90,11 +90,11 @@ export default function Register() {
             isPassword={true}
           />
 
-        <div className="section-text">
-          <h2 className='solid-text'>Add some personal information</h2>
-        </div>
+          <div className="section-text">
+            <h2 className='solid-text'>Add some personal information</h2>
+          </div>
 
-          <InputText 
+          <InputText
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
             label="First name"
@@ -104,7 +104,7 @@ export default function Register() {
             required={true}
           />
 
-          <InputText 
+          <InputText
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
             label="Last name"
@@ -114,7 +114,7 @@ export default function Register() {
             required={true}
           />
 
-          <InputText 
+          <InputText
             value={middle_name}
             onChange={(e) => setMiddleName(e.target.value)}
             label="Middle name"
@@ -134,7 +134,7 @@ export default function Register() {
             required={true}
           />
 
-          <InputText 
+          <InputText
             value={age}
             onChange={(e) => setAge(e.target.value)}
             label="Age"
@@ -142,9 +142,9 @@ export default function Register() {
             placeholder='Add your age'
             required={true}
             errorMessage="You must be older than 16 to reate an account"
-            min = {16}
+            min={16}
           />
-          
+
           <Dropdown
             value={country}
             onChange={(e) => setCountry(e.target.value)}
@@ -155,7 +155,7 @@ export default function Register() {
             required={true}
           />
 
-          <InputText 
+          <InputText
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             label="Phone"
@@ -166,11 +166,11 @@ export default function Register() {
             pattern="^\d{10}$"
           />
 
-        <div className="section-text">
-          <h2 className='solid-text'>Add your parametrs</h2>
-        </div>
+          <div className="section-text">
+            <h2 className='solid-text'>Add your parametrs</h2>
+          </div>
 
-          <InputText 
+          <InputText
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
             label="Weight"
@@ -178,11 +178,11 @@ export default function Register() {
             placeholder='Add your weight in kg'
             required={true}
             errorMessage="This doesn't look like correct weight"
-            min = {40}
-            max = {250}
+            min={40}
+            max={250}
           />
 
-          <InputText 
+          <InputText
             value={height}
             onChange={(e) => setHeight(e.target.value)}
             label="Height"
@@ -190,12 +190,12 @@ export default function Register() {
             placeholder='Add your height in cm'
             required={true}
             errorMessage="This doesn't look like correct height"
-            min = {120}
-            max = {250}
+            min={120}
+            max={250}
           />
 
           <Button type="Submit" className="solid-neutral medium">Create an account</Button>
-  
+
         </form>
       </div>
     </>

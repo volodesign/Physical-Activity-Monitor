@@ -5,38 +5,38 @@ import AuthContext from '../../context/AuthContext';
 
 export default function Navbar() {
 
-const {loggedIn} = useContext(AuthContext);
-const location = useLocation();
+  const { loggedIn } = useContext(AuthContext);
+  const location = useLocation();
 
   return (
     <div className='header'>
       <Link to="/">AppName</Link>
-        {
-          loggedIn === false && (
-            <>
+      {
+        loggedIn === false && (
+          <>
             <div className='link-wrap'>
-            {location.pathname === '/signin' ? (
-              <>
-              <Link to="/signup">Create an account</Link>
-              </>
-            ) : (
-              <>
-              <Link to="/signin">Log in</Link>
-              </>
-            )}
+              {location.pathname === '/signin' ? (
+                <>
+                  <Link to="/signup">Create an account</Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/signin">Log in</Link>
+                </>
+              )}
             </div>
-            </>
-          )
-        }
-        
-        {
-          loggedIn === true && (
-            <>
+          </>
+        )
+      }
+
+      {
+        loggedIn === true && (
+          <>
             <Link to="/dashboard">Dashboard</Link>
-            <LogOut />      
-            </>
-          )
-        }
+            <LogOut />
+          </>
+        )
+      }
     </div>
   )
 }

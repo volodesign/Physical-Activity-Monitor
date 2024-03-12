@@ -14,7 +14,7 @@ app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin : ["http://localhost:3000"],
+  origin: ["http://localhost:3000"],
   credentials: true
 }));
 
@@ -26,6 +26,6 @@ mongoose.connect(process.env.MDB_CONNECT)
   .catch(err => {
     console.error('MongoDB connection error:', err);
   });
-  
+
 //set-up routes
 app.use("/auth", require("./routers/userRouter"));
