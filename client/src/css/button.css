@@ -1,35 +1,55 @@
-.solid-neutral {
+.variant-solid-neutral {
     background-color: var(--neutral-12);
     border: none;
     color: var(--neutral-1);
 }
-
-.solid-neutral:hover {
+.variant-solid-neutral:hover {
     opacity: 0.82;
 }
 
-.soft-neutral {
-    background-color: var(--neutral-alpha-3);
+.variant-link-neutral{
+    background: none;
     border: none;
     color: var(--neutral-12);
+    padding-left: 0px;
+}
+.variant-link-neutral:hover{
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: var(--neutral-11);
 }
 
-.soft-neutral:hover {
-    background-color: var(--neutral-alpha-4);
+.variant-dropdown {
+    color: var(--neutral-12);
+    padding-left: 8px;
+    width: 100%;
+    border: none;
+    background: none;
+    text-align: left;
+}
+.variant-dropdown:hover {
+    background-color: var(--neutral-alpha-3);
 }
 
-.medium {
+
+.size-1 {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    height: 24px;
+    border-radius: 4px;
+}
+.size-2 {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    height: 32px;
+    border-radius: 6px;
+}
+.size-3 {
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
     height: 40px;
     border-radius: 8px;
-}
-
-.small {
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 500;
-    height: 32px;
-    border-radius: 6px;
 }

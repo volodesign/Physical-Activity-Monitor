@@ -4,6 +4,7 @@ import Navbar from './Components/Layout/Navbar';
 import Register from './Components/Auth/Register';
 import Login from './Components/Auth/Login';
 import Dashboard from './Components/Dashboard';
+import Settings from './Components/Settings';
 import AuthContext from './context/AuthContext';
 import ForgotPassword from './Components/Auth/ForgotPassword';
 import ResetPassword from './Components/Auth/ResetPassword';
@@ -38,6 +39,7 @@ function Router() {
                         <>
                             <Route path="/" element={<Navigate to="/dashboard" />} />
                             <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path='/settings' element={<Settings/>} />
                         </>
                     )
                 }

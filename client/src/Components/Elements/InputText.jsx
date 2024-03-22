@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import "../../css/input.css"
+import "../../css/text.css"
 
 export default function InputText({ value, onChange, label, errorMessage, type, placeholder, required, pattern, onFocus, min, max, className, emailExists, isPassword }) {
 
@@ -23,14 +24,14 @@ export default function InputText({ value, onChange, label, errorMessage, type, 
   return (
     <>
       <div className='input-base'>
-        <label>
+        <label className="text-size-3 text-weight-medium text-style-neutral text-align-left">
           {label}
         </label>
 
         {isPassword &&
           <>
             <input
-              className={className}
+              className={(className, "text-size-3 text-weight-regular text-style-neutral")}
               type={showPassword ? 'text' : 'password'}
               placeholder={placeholder}
               value={value}
@@ -52,7 +53,7 @@ export default function InputText({ value, onChange, label, errorMessage, type, 
 
         {!isPassword &&
           <input
-            className={className}
+            className={(className, "text-size-3 text-weight-regular text-style-neutral")}
             type={type}
             placeholder={placeholder}
             value={value}
@@ -66,8 +67,8 @@ export default function InputText({ value, onChange, label, errorMessage, type, 
             max={max}
           />}
 
-        {emailExists && <span className='errorMessage'>User with this email already exists</span>}
-        <span className='hint errorMessage'>{errorMessage}</span>
+        {emailExists && <span className='text-size-2 text-weight-medium text-style-danger'>User with this email already exists</span>}
+        <span className='hint text-size-2 text-weight-medium text-style-danger'>{errorMessage}</span>
       </div>
     </>
   )

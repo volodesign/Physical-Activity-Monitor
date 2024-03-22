@@ -4,6 +4,7 @@ import Button from '../Elements/Button'
 import Alert from '../Elements/Alert';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import "../../css/text.css"
 
 export default function ForgotPassword() {
 
@@ -36,8 +37,8 @@ export default function ForgotPassword() {
       <div className="form-container">
 
         <div className="title-text">
-          <h1 className='solid-text'>Recover password</h1>
-          <p className='subtle-text'>Enter your email and we will send you a link to recover your password.</p>
+          <h1 className='text-size-6 text-weight-semibold text-style-neutral'>Recover password</h1>
+          <p className='text-size-3 text-weight-regular text-style-grey'>Enter your email and we will send you a link to recover your password.</p>
         </div>
 
         <form onSubmit={forgotPassword}>
@@ -51,7 +52,7 @@ export default function ForgotPassword() {
             onFocus={handleFieldFocus}
           />
 
-          <Button type="Submit" className="solid-neutral medium">Reset password</Button>
+          <Button type="Submit" className="variant-solid-neutral size-3">Reset password</Button>
 
         </form>
 

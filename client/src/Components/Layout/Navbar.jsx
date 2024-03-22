@@ -1,27 +1,45 @@
 import React, { useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom'
-import LogOut from '../Auth/LogOut';
+import { useLocation, useNavigate } from 'react-router-dom'
 import AuthContext from '../../context/AuthContext';
+import Button from '../Elements/Button';
+import DropdownProfile from '../Elements/DropdownProfile'
 
 export default function Navbar() {
 
   const { loggedIn } = useContext(AuthContext);
   const location = useLocation();
 
+  const navigate = useNavigate();
+
+  const signupNavigate = () => {
+    const path = "/signup";
+    navigate(path);
+  }
+
+  const signinNavigate = () => {
+    const path = "/signin";
+    navigate(path);
+  }
+
+  const rootNavigate = () => {
+    const path = "/";
+    navigate(path);
+  }
+
   return (
     <div className='header'>
-      <Link to="/">AppName</Link>
+      <Button onClick={rootNavigate} className="size-3 variant-link-neutral">Physical Monitor</Button>
       {
         loggedIn === false && (
           <>
             <div className='link-wrap'>
               {location.pathname === '/signin' ? (
                 <>
-                  <Link to="/signup">Create an account</Link>
+                  <Button onClick={signupNavigate} className="size-3 variant-link-neutral">Create an account</Button>
                 </>
               ) : (
                 <>
-                  <Link to="/signin">Log in</Link>
+                  <Button onClick={signinNavigate} className="size-3 variant-link-neutral">Login</Button>
                 </>
               )}
             </div>
@@ -32,8 +50,7 @@ export default function Navbar() {
       {
         loggedIn === true && (
           <>
-            <Link to="/dashboard">Dashboard</Link>
-            <LogOut />
+            <DropdownProfile />
           </>
         )
       }

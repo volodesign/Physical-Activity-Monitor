@@ -4,6 +4,7 @@ import InputText from '../Elements/InputText';
 import Button from '../Elements/Button'
 import { useNavigate } from 'react-router-dom';
 import Alert from '../Elements/Alert';
+import "../../css/text.css"
 
 export default function ResetPassword() {
 
@@ -31,8 +32,8 @@ export default function ResetPassword() {
       <div className="form-container">
 
         <div className="title-text">
-          <h1 className='solid-text'>Create new password</h1>
-          <p className='subtle-text'>Create a new password for your account.</p>
+          <h1 className='text-size-6 text-weight-semibold text-style-neutral'>Create new password</h1>
+          <p className='text-size-3 text-weight-regular text-style-grey'>Create a new password for your account.</p>
         </div>
 
         <form onSubmit={resetPassword}>
@@ -48,7 +49,7 @@ export default function ResetPassword() {
             isPassword={true}
           />
 
-          <Button type="Submit" className="solid-neutral medium">Update password</Button>
+          <Button type="Submit" className="variant-solid-neutral size-3">Update password</Button>
 
         </form>
         {error && <Alert className="alert error">{error}</Alert>}

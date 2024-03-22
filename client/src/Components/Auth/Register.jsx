@@ -62,8 +62,8 @@ export default function Register() {
       <div className="form-container">
 
         <div className="title-text">
-          <h1 className='solid-text'>Create an account</h1>
-          <p className='subtle-text'>Fill the form below to create your account.</p>
+          <h1 className='text-size-6 text-weight-semibold text-style-neutral'>Create an account</h1>
+          <p className='text-size-3 text-weight-regular text-style-grey'>Fill the form below to create your account.</p>
         </div>
         {error && <Alert className="alert error">{error}</Alert>}
         <form onSubmit={register}>
@@ -91,7 +91,7 @@ export default function Register() {
           />
 
           <div className="section-text">
-            <h2 className='solid-text'>Add some personal information</h2>
+            <h2 className='text-size-4 text-weight-semibold text-style-neutral'>Add some personal information</h2>
           </div>
 
           <InputText
@@ -167,7 +167,7 @@ export default function Register() {
           />
 
           <div className="section-text">
-            <h2 className='solid-text'>Add your parametrs</h2>
+            <h2 className='text-size-4 text-weight-semibold text-style-neutral'>Add your parametrs</h2>
           </div>
 
           <InputText
@@ -194,7 +194,7 @@ export default function Register() {
             max={250}
           />
 
-          <Button type="Submit" className="solid-neutral medium">Create an account</Button>
+          <Button type="Submit" className="variant-solid-neutral size-3">Create an account</Button>
 
         </form>
       </div>

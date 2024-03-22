@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import AuthContext from '../../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import InputText from '../Elements/InputText';
 import Button from '../Elements/Button'
 import Alert from '../Elements/Alert';
+import "../../css/text.css"
 
 
 export default function Login() {
@@ -19,6 +20,10 @@ export default function Login() {
 
   const handleFieldFocus = () => {
     setError("");
+  };
+
+  const navigateForgotPassword = () => {
+    navigate('/forgot-password');
   };
 
 
@@ -48,8 +53,8 @@ export default function Login() {
       <div className="form-container">
 
         <div className="title-text">
-          <h1 className='solid-text'>Login to your account</h1>
-          <p className='subtle-text'>Enter your credentials to login to your account.</p>
+          <h1 className='text-size-6 text-weight-semibold text-style-neutral'>Login to your account</h1>
+          <p className='text-size-3 text-weight-regular text-style-grey'>Enter your credentials to login to your account.</p>
         </div>
 
         <form onSubmit={login}>
@@ -75,10 +80,10 @@ export default function Login() {
           />
 
           <div className='link-wrap'>
-            <Link to="/forgot-password">Forgot password?</Link>
+            <Button type="Button" className="size-3 variant-link-neutral" onClick={navigateForgotPassword}>Forgot password?</Button>
           </div>
 
-          <Button type="Submit" className="solid-neutral medium">Login</Button>
+          <Button type="Submit" className="variant-solid-neutral size-3">Login</Button>
 
         </form>
 

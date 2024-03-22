@@ -18,6 +18,6 @@ export default function LogOut() {
   }
 
   return (
-    <Button onClick={logOut} className="soft-neutral small">Logout</Button>
+    <Button onClick={logOut} className="variant-dropdown size-2">Logout</Button>
   )
 }
