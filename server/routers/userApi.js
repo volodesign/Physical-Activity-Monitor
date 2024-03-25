@@ -14,7 +14,7 @@ router.get("/userdata", auth, async (req, res) => {
     } catch (error) {
         console.error("Error retrieving user data:", error);
         console.error(error);
-        res.status(500).json({message: "Server error"});
+        res.status(500).json({ message: "Server error" });
     }
 })
 

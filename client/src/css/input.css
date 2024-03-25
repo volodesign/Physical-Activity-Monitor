@@ -1,7 +1,9 @@
 /* For webkit-based browsers */
 input[type=number] {
-    -moz-appearance: none; /* Firefox */
-    appearance: none; /* Others */
+    -moz-appearance: none;
+    /* Firefox */
+    appearance: none;
+    /* Others */
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -88,7 +90,7 @@ select:invalid[focused="true"]~.hint {
     position: absolute;
     border: none;
     background: none;
-    top: 45px;  
+    top: 45px;
     height: 18px;
     width: 18px;
     right: 12px;

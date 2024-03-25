@@ -22,7 +22,7 @@ export default function Dropdown({ options, value, onChange, label, placeholder,
   return (
     <>
       <div className='input-base'>
-      <label className="text-size-3 text-weight-medium text-style-neutral text-align-left">
+        <label className="text-size-3 text-weight-medium text-style-neutral text-align-left">
           {label}
         </label>
         <i className="fa-solid fa-chevron-down dropdown-icon"></i>

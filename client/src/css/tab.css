@@ -1,0 +1,46 @@
+.tabgroup {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    gap: 8px;
+    scrollbar-width: none;
+}
+
+.tab-base {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 8px;
+    list-style: none;
+    cursor: pointer;
+    height: 32px;
+    border-radius: 6px;
+}
+
+.tab-active {
+    color: var(--neutral-12);
+    background-color: var(--neutral-alpha-3);
+    cursor: default;
+}
+
+.tab-default {
+    color: var(--neutral-11);
+}
+
+.tab-default:hover {
+    color: var(--neutral-12);
+}
+
+.tabgroup::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .tabgroup {
+        overflow-x: scroll;
+    }
+}

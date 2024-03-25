@@ -25,7 +25,7 @@ export default function DropdownProfile() {
     const newColorScheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', newColorScheme);
     localStorage.setItem('colorScheme', newColorScheme);
-    setIsOpen(false);
+    //setIsOpen(false);
   };
 
   useEffect(() => {
