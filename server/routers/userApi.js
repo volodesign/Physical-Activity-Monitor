@@ -2,6 +2,26 @@ const router = require("express").Router();
 const auth = require("../middleware/auth");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const upload = require("../middleware/upload");
+const uploadImage = require("../middleware/uploadImage");
+const uploadController = require("../contollers/uploadController");
+
+//upload user image
+router.post("/uploadAvatar", uploadImage, upload, auth, async (req, res) => {
+  const avatarURL = await uploadController.uploadAvatar(req, res);
+  try {
+    const user = await User.findById(req.user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    user.avatar = avatarURL;
+    await user.save();
+
+    res.status(200).send({ message: "Avatar updated" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 //get user info
 router.get("/userdata", auth, async (req, res) => {

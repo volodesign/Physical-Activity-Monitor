@@ -12,6 +12,7 @@ const PORT = 3232;
 app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
 
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 app.use(cookieParser());
 app.use(
   cors({

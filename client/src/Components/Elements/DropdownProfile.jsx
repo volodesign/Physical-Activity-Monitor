@@ -32,7 +32,17 @@ export default function DropdownProfile() {
 
   useEffect(() => {
     setLoading(true);
-    fetchData().then(() => setLoading(false));
+    const fetchUserData = async () => {
+      try {
+        if (!user) {
+          await fetchData();
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+    fetchUserData();
+    setLoading(false);
 
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -44,48 +54,62 @@ export default function DropdownProfile() {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchData]);
 
   return (
-    <div className="profile" ref={dropdownRef}>
-      <Button onClick={toggleDropdown} className="variant-solid-neutral size-2">
-        Profile
-      </Button>
-      {isOpen && (
-        <div className="profile-dropdown">
-          {(user || !loading) && (
-            <div className="profile-name">
-              <h3 className="text-size-3 text-weight-semibold text-style-neutral">
-                {user.first_name} {user.last_name}
-              </h3>
-              <p className="text-size-3 text-weight-regular text-style-grey">
-                {user.email}
-              </p>
+    <>
+      {loading ? (
+        // Render loading state
+        <div>Loading...</div>
+      ) : (
+        user && (
+          // Render profile dropdown when user data is available
+          <div className="profile" ref={dropdownRef}>
+            <div className="avatar-button">
+              <img
+                src={user.avatar}
+                alt="user avatar"
+                onClick={toggleDropdown}
+                className="avatar-image"
+              />
             </div>
-          )}
-          <ul className="profile-dropdown-list">
-            <li>
-              <Button
-                onClick={settingsNavigate}
-                className="variant-dropdown size-2"
-              >
-                Settings
-              </Button>
-            </li>
-            <li>
-              <Button
-                onClick={toggleColorScheme}
-                className="variant-dropdown size-2"
-              >
-                Change theme
-              </Button>
-            </li>
-            <li>
-              <LogOut />
-            </li>
-          </ul>
-        </div>
+            {isOpen && (
+              <div className="profile-dropdown">
+                <div className="profile-name">
+                  <h3 className="text-size-3 text-weight-semibold text-style-neutral">
+                    {user.first_name} {user.last_name}
+                  </h3>
+                  <p className="text-size-3 text-weight-regular text-style-grey">
+                    {user.email}
+                  </p>
+                </div>
+                <ul className="profile-dropdown-list">
+                  <li>
+                    <Button
+                      onClick={settingsNavigate}
+                      className="variant-dropdown size-2"
+                    >
+                      Settings
+                    </Button>
+                  </li>
+                  <li>
+                    <Button
+                      onClick={toggleColorScheme}
+                      className="variant-dropdown size-2"
+                    >
+                      Change theme
+                    </Button>
+                  </li>
+                  <li>
+                    <LogOut />
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        )
       )}
-    </div>
+    </>
   );
 }
