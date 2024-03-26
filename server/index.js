@@ -13,18 +13,21 @@ app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: ["http://localhost:3000"],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 
 //connect to mongo
-mongoose.connect(process.env.MDB_CONNECT)
+mongoose
+  .connect(process.env.MDB_CONNECT)
   .then(() => {
-    console.log('MongoDB connected');
+    console.log("MongoDB connected");
   })
-  .catch(err => {
-    console.error('MongoDB connection error:', err);
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
   });
 
 //set-up routes

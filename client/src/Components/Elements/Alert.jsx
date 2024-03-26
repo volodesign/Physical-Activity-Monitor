@@ -1,8 +1,6 @@
-import React from 'react'
-import "../../css/alert.css"
+import React from "react";
+import "../../css/alert.css";
 
 export default function Alert({ children, className }) {
-  return (
-    <div className={className}>{children}</div>
-  )
+  return <div className={className}>{children}</div>;
 }

@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import axios from 'axios';
-import InputText from '../Elements/InputText';
-import Button from '../Elements/Button'
-import { useNavigate } from 'react-router-dom';
-import Alert from '../Elements/Alert';
-import "../../css/text.css"
+import React, { useState } from "react";
+import axios from "axios";
+import InputText from "../Elements/InputText";
+import Button from "../Elements/Button";
+import { useNavigate } from "react-router-dom";
+import Alert from "../Elements/Alert";
+import "../../css/text.css";
 
 export default function ResetPassword() {
-
-  const [newPassword, setNewPassword] = useState('');
+  const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -17,23 +16,25 @@ export default function ResetPassword() {
     try {
       const token = window.location.pathname.split("/").pop();
 
-      await axios.post(`http://localhost:3232/auth/reset-password/${token}`, { newPassword });
+      await axios.post(`http://localhost:3232/auth/reset-password/${token}`, {
+        newPassword,
+      });
       navigate("/reset-password-success");
-
-
     } catch (err) {
       setError("Something went wrong");
-
     }
-  }
+  };
 
   return (
     <>
       <div className="form-container">
-
         <div className="title-text">
-          <h1 className='text-size-6 text-weight-semibold text-style-neutral'>Create new password</h1>
-          <p className='text-size-3 text-weight-regular text-style-grey'>Create a new password for your account.</p>
+          <h1 className="text-size-6 text-weight-semibold text-style-neutral">
+            Create new password
+          </h1>
+          <p className="text-size-3 text-weight-regular text-style-grey">
+            Create a new password for your account.
+          </p>
         </div>
 
         <form onSubmit={resetPassword}>
@@ -42,20 +43,19 @@ export default function ResetPassword() {
             onChange={(e) => setNewPassword(e.target.value)}
             label="Password"
             type="password"
-            placeholder='Create your new password'
+            placeholder="Create your new password"
             errorMessage="Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character, with a minimum length of 8 characters."
             required={true}
             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
             isPassword={true}
           />
 
-          <Button type="Submit" className="variant-solid-neutral size-3">Update password</Button>
-
+          <Button type="Submit" className="variant-solid-neutral size-3">
+            Update password
+          </Button>
         </form>
         {error && <Alert className="alert error">{error}</Alert>}
-
-
       </div>
     </>
-  )
+  );
 }

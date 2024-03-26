@@ -1,13 +1,18 @@
 .alert {
-    display: flex;
-    border-radius: 12px;
-    padding: 16px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
+  display: flex;
+  border-radius: 12px;
+  padding: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .error {
-    color: var(--danger-11);
-    background-color: var(--danger-alpha-3);
+  color: var(--danger-11);
+  background-color: var(--danger-alpha-3);
+}
+
+.success {
+  color: var(--success-11);
+  background-color: var(--success-alpha-3);
 }

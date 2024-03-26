@@ -1,18 +1,16 @@
-import React, { useContext, useState } from 'react'
-import axios from 'axios'
-import AuthContext from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import InputText from '../Elements/InputText';
-import Dropdown from '../Elements/Dropdown';
-import Button from '../Elements/Button';
-import Alert from '../Elements/Alert';
+import React, { useContext, useState } from "react";
+import axios from "axios";
+import AuthContext from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import InputText from "../Elements/InputText";
+import Dropdown from "../Elements/Dropdown";
+import Button from "../Elements/Button";
+import Alert from "../Elements/Alert";
 
-import countriesData from '../../Data/countries.json'
-import gendersData from '../../Data/genders.json'
-
+import countriesData from "../../Data/countries.json";
+import gendersData from "../../Data/genders.json";
 
 export default function Register() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [first_name, setFirstName] = useState("");
@@ -31,23 +29,31 @@ export default function Register() {
   const { getLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-
   async function register(e) {
     e.preventDefault();
 
     try {
       const registerData = {
-        email, password, first_name, last_name, middle_name, gender, age, phone, country, weight, height
-      }
+        email,
+        password,
+        first_name,
+        last_name,
+        middle_name,
+        gender,
+        age,
+        phone,
+        country,
+        weight,
+        height,
+      };
 
       await axios.post("http://localhost:3232/auth", registerData);
       await getLoggedIn();
       navigate("/dashboard");
-
     } catch (err) {
       window.scrollTo(0, 0);
       setExistingUser(true);
-      console.error(err)
+      console.error(err);
       if (err.response && err.response.status === 400) {
         setError("User with this email already exists");
       } else {
@@ -56,23 +62,28 @@ export default function Register() {
     }
   }
 
-
   return (
     <>
       <div className="form-container">
-
         <div className="title-text">
-          <h1 className='text-size-6 text-weight-semibold text-style-neutral'>Create an account</h1>
-          <p className='text-size-3 text-weight-regular text-style-grey'>Fill the form below to create your account.</p>
+          <h1 className="text-size-6 text-weight-semibold text-style-neutral">
+            Create an account
+          </h1>
+          <p className="text-size-3 text-weight-regular text-style-grey">
+            Fill the form below to create your account.
+          </p>
         </div>
         {error && <Alert className="alert error">{error}</Alert>}
         <form onSubmit={register}>
           <InputText
             value={email}
-            onChange={(e) => { setEmail(e.target.value); setExistingUser(false); }}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setExistingUser(false);
+            }}
             label="Email"
             type="email"
-            placeholder='Add your email'
+            placeholder="Add your email"
             errorMessage="Invalid email"
             required={true}
             emailExists={existedUser}
@@ -83,7 +94,7 @@ export default function Register() {
             onChange={(e) => setPassword(e.target.value)}
             label="Password"
             type="password"
-            placeholder='Add your password'
+            placeholder="Add your password"
             errorMessage="Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character, with a minimum length of 8 characters."
             required={true}
             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
@@ -91,7 +102,9 @@ export default function Register() {
           />
 
           <div className="section-text">
-            <h2 className='text-size-4 text-weight-semibold text-style-neutral'>Add some personal information</h2>
+            <h2 className="text-size-4 text-weight-semibold text-style-neutral">
+              Add some personal information
+            </h2>
           </div>
 
           <InputText
@@ -99,7 +112,7 @@ export default function Register() {
             onChange={(e) => setFirstName(e.target.value)}
             label="First name"
             type="text"
-            placeholder='Add your first name'
+            placeholder="Add your first name"
             errorMessage="You must add your name"
             required={true}
           />
@@ -109,7 +122,7 @@ export default function Register() {
             onChange={(e) => setLastName(e.target.value)}
             label="Last name"
             type="text"
-            placeholder='Add your last name'
+            placeholder="Add your last name"
             errorMessage="You must add your last name"
             required={true}
           />
@@ -119,7 +132,7 @@ export default function Register() {
             onChange={(e) => setMiddleName(e.target.value)}
             label="Middle name"
             type="text"
-            placeholder='Add your middle name'
+            placeholder="Add your middle name"
             errorMessage="You must add your middle"
             required={true}
           />
@@ -129,7 +142,7 @@ export default function Register() {
             onChange={(e) => setGender(e.target.value)}
             label="Gender"
             options={gendersData}
-            placeholder='Select your gender'
+            placeholder="Select your gender"
             errorMessage="Select your gender"
             required={true}
           />
@@ -139,7 +152,7 @@ export default function Register() {
             onChange={(e) => setAge(e.target.value)}
             label="Age"
             type="number"
-            placeholder='Add your age'
+            placeholder="Add your age"
             required={true}
             errorMessage="You must be older than 16 to reate an account"
             min={16}
@@ -150,7 +163,7 @@ export default function Register() {
             onChange={(e) => setCountry(e.target.value)}
             label="Country"
             options={countriesData}
-            placeholder='Select your country'
+            placeholder="Select your country"
             errorMessage="Select your country"
             required={true}
           />
@@ -160,14 +173,16 @@ export default function Register() {
             onChange={(e) => setPhone(e.target.value)}
             label="Phone"
             type="text"
-            placeholder='0660123456'
+            placeholder="0660123456"
             required={true}
             errorMessage="Phone number must be in format 0660123456"
             pattern="^\d{10}$"
           />
 
           <div className="section-text">
-            <h2 className='text-size-4 text-weight-semibold text-style-neutral'>Add your parametrs</h2>
+            <h2 className="text-size-4 text-weight-semibold text-style-neutral">
+              Add your parametrs
+            </h2>
           </div>
 
           <InputText
@@ -175,7 +190,7 @@ export default function Register() {
             onChange={(e) => setWeight(e.target.value)}
             label="Weight"
             type="number"
-            placeholder='Add your weight in kg'
+            placeholder="Add your weight in kg"
             required={true}
             errorMessage="This doesn't look like correct weight"
             min={40}
@@ -187,17 +202,18 @@ export default function Register() {
             onChange={(e) => setHeight(e.target.value)}
             label="Height"
             type="number"
-            placeholder='Add your height in cm'
+            placeholder="Add your height in cm"
             required={true}
             errorMessage="This doesn't look like correct height"
             min={120}
             max={250}
           />
 
-          <Button type="Submit" className="variant-solid-neutral size-3">Create an account</Button>
-
+          <Button type="Submit" className="variant-solid-neutral size-3">
+            Create an account
+          </Button>
         </form>
       </div>
     </>
-  )
+  );
 }

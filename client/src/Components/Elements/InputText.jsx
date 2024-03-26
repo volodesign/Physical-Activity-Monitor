@@ -1,9 +1,23 @@
-import React, { useState } from 'react'
-import "../../css/input.css"
-import "../../css/text.css"
+import React, { useState } from "react";
+import "../../css/input.css";
+import "../../css/text.css";
 
-export default function InputText({ value, onChange, label, errorMessage, type, placeholder, required, pattern, onFocus, min, max, className, emailExists, isPassword }) {
-
+export default function InputText({
+  value,
+  onChange,
+  label,
+  errorMessage,
+  type,
+  placeholder,
+  required,
+  pattern,
+  onFocus,
+  min,
+  max,
+  className,
+  emailExists,
+  isPassword,
+}) {
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -13,7 +27,7 @@ export default function InputText({ value, onChange, label, errorMessage, type, 
 
   const handleFocus = (e) => {
     setFocused(true);
-  }
+  };
 
   const handleChange = (e) => {
     if (onChange) {
@@ -23,16 +37,19 @@ export default function InputText({ value, onChange, label, errorMessage, type, 
 
   return (
     <>
-      <div className='input-base'>
+      <div className="input-base">
         <label className="text-size-3 text-weight-medium text-style-neutral text-align-left">
           {label}
         </label>
 
-        {isPassword &&
+        {isPassword && (
           <>
             <input
-              className={(className, "text-size-3 text-weight-regular text-style-neutral")}
-              type={showPassword ? 'text' : 'password'}
+              className={
+                (className,
+                "text-size-3 text-weight-regular text-style-neutral")
+              }
+              type={showPassword ? "text" : "password"}
               placeholder={placeholder}
               value={value}
               onChange={handleChange}
@@ -44,16 +61,22 @@ export default function InputText({ value, onChange, label, errorMessage, type, 
               min={min}
               max={max}
             />
-            <button type="button" className="eye-button" onClick={togglePasswordVisibility}>
+            <button
+              type="button"
+              className="eye-button"
+              onClick={togglePasswordVisibility}
+            >
               {showPassword && <i className="fa-solid fa-eye-slash"></i>}
               {!showPassword && <i className="fa-solid fa-eye"></i>}
             </button>
           </>
-        }
+        )}
 
-        {!isPassword &&
+        {!isPassword && (
           <input
-            className={(className, "text-size-3 text-weight-regular text-style-neutral")}
+            className={
+              (className, "text-size-3 text-weight-regular text-style-neutral")
+            }
             type={type}
             placeholder={placeholder}
             value={value}
@@ -65,11 +88,18 @@ export default function InputText({ value, onChange, label, errorMessage, type, 
             onFocus={onFocus}
             min={min}
             max={max}
-          />}
+          />
+        )}
 
-        {emailExists && <span className='text-size-2 text-weight-medium text-style-danger'>User with this email already exists</span>}
-        <span className='hint text-size-2 text-weight-medium text-style-danger'>{errorMessage}</span>
+        {emailExists && (
+          <span className="text-size-2 text-weight-medium text-style-danger">
+            User with this email already exists
+          </span>
+        )}
+        <span className="hint text-size-2 text-weight-medium text-style-danger">
+          {errorMessage}
+        </span>
       </div>
     </>
-  )
+  );
 }

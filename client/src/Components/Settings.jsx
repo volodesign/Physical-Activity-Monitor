@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import TabButton from './Elements/TabButton'
-import UpdatePersonal from "./Settings/UpdatePersonal"
-import UpdateParametrs from "./Settings/UpdateParametrs.jsx"
-import UpdateEmail from "./Settings/UpdateEmail"
-import UpdatePassword from "./Settings/UpdatePassword"
-import "../css/tab.css"
+import React, { useState } from "react";
+import TabButton from "./Elements/TabButton";
+import UpdatePersonal from "./Settings/UpdatePersonal";
+import UpdateParametrs from "./Settings/UpdateParametrs.jsx";
+import UpdateEmail from "./Settings/UpdateEmail";
+import UpdatePassword from "./Settings/UpdatePassword";
+import "../css/tab.css";
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState(1);
@@ -16,9 +16,9 @@ export default function Settings() {
   const showContent = () => {
     switch (activeTab) {
       case 1:
-        return <UpdatePersonal />
+        return <UpdatePersonal />;
       case 2:
-        return <UpdateParametrs />
+        return <UpdateParametrs />;
       case 3:
         return <UpdateEmail />;
       case 4:
@@ -31,7 +31,7 @@ export default function Settings() {
   return (
     <>
       <div className="settings-container">
-        <div className='tabgroup'>
+        <div className="tabgroup">
           <TabButton
             className={activeTab === 1 ? "tab-active" : "tab-default"}
             onClick={() => handleTabClick(1)}
@@ -48,7 +48,7 @@ export default function Settings() {
             className={activeTab === 3 ? "tab-active" : "tab-default"}
             onClick={() => handleTabClick(3)}
           >
-            UpdateEmail
+            Update Email
           </TabButton>
           <TabButton
             className={activeTab === 4 ? "tab-active" : "tab-default"}
@@ -57,9 +57,7 @@ export default function Settings() {
             Update Password
           </TabButton>
         </div>
-        <div>
-          {showContent()}
-        </div>
+        {showContent()}
       </div>
     </>
   );

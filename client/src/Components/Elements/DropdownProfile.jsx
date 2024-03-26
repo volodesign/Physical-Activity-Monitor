@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import LogOut from '../Auth/LogOut';
-import { UserContext } from '../../context/UserContext';
-import "../../css/profileDropdown.css"
-import { useNavigate } from 'react-router-dom';
-import Button from '../Elements/Button';
+import React, { useContext, useEffect, useRef, useState } from "react";
+import LogOut from "../Auth/LogOut";
+import { UserContext } from "../../context/UserContext";
+import "../../css/profileDropdown.css";
+import { useNavigate } from "react-router-dom";
+import Button from "../Elements/Button";
 
 export default function DropdownProfile() {
   const { user, fetchData } = useContext(UserContext);
@@ -14,18 +14,20 @@ export default function DropdownProfile() {
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-  }
+  };
 
   const settingsNavigate = () => {
-    navigate('/settings');
+    navigate("/settings");
     setIsOpen(false);
   };
 
   const toggleColorScheme = () => {
-    const newColorScheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', newColorScheme);
-    localStorage.setItem('colorScheme', newColorScheme);
-    //setIsOpen(false);
+    const newColorScheme =
+      document.documentElement.getAttribute("data-theme") === "light"
+        ? "dark"
+        : "light";
+    document.documentElement.setAttribute("data-theme", newColorScheme);
+    localStorage.setItem("colorScheme", newColorScheme);
   };
 
   useEffect(() => {
@@ -38,29 +40,45 @@ export default function DropdownProfile() {
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, [fetchData]);
 
   return (
     <div className="profile" ref={dropdownRef}>
-      <Button onClick={toggleDropdown} className="variant-solid-neutral size-2">Profile</Button>
+      <Button onClick={toggleDropdown} className="variant-solid-neutral size-2">
+        Profile
+      </Button>
       {isOpen && (
         <div className="profile-dropdown">
           {(user || !loading) && (
             <div className="profile-name">
-              <h3 className='text-size-3 text-weight-semibold text-style-neutral'>{user.first_name} {user.last_name}</h3>
-              <p className='text-size-3 text-weight-regular text-style-grey'>{user.email}</p>
+              <h3 className="text-size-3 text-weight-semibold text-style-neutral">
+                {user.first_name} {user.last_name}
+              </h3>
+              <p className="text-size-3 text-weight-regular text-style-grey">
+                {user.email}
+              </p>
             </div>
           )}
-          <ul className='profile-dropdown-list'>
+          <ul className="profile-dropdown-list">
             <li>
-              <Button onClick={settingsNavigate} className="variant-dropdown size-2">Settings</Button>
+              <Button
+                onClick={settingsNavigate}
+                className="variant-dropdown size-2"
+              >
+                Settings
+              </Button>
             </li>
             <li>
-              <Button onClick={toggleColorScheme} className="variant-dropdown size-2">Change theme</Button>
+              <Button
+                onClick={toggleColorScheme}
+                className="variant-dropdown size-2"
+              >
+                Change theme
+              </Button>
             </li>
             <li>
               <LogOut />

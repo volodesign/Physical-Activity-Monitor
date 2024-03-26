@@ -1,9 +1,8 @@
 :root {
   background-color: var(--background-1);
   font-family: Inter, sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1;
+  font-feature-settings: "liga" 1, "calt" 1;
   /* fix for Chrome */
-
 }
 
 @supports (font-variation-settings: normal) {
@@ -14,14 +13,13 @@
 
 * {
   font-family: Inter, sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1;
+  font-feature-settings: "liga" 1, "calt" 1;
   /* fix for Chrome */
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: never;
   transition: all 0.3s ease-out;
-
 }
 
 .header {
@@ -36,6 +34,7 @@
 
 .container {
   padding: 0 20px;
+  gap: 16px;
   flex-direction: column;
   display: flex;
   justify-content: center;
@@ -43,7 +42,6 @@
 }
 
 .settings-container {
-  margin-top: 16px;
   margin-bottom: 80px;
   max-width: 1080px;
   width: 100%;
@@ -51,6 +49,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 48px;
+}
+
+.settings-form-container {
+  margin-bottom: 80px;
+  max-width: 360px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 32px;
 }
 
@@ -102,6 +109,6 @@ a:hover {
   opacity: 0.82;
 }
 
-form>button {
+form > button {
   margin-top: 16px;
 }
