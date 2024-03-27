@@ -19,6 +19,7 @@
   cursor: pointer;
   height: 32px;
   border-radius: 6px;
+  padding: 0 8px;
 }
 
 .tab-active {

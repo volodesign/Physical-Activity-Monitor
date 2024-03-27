@@ -45,25 +45,25 @@ export default function Settings() {
             className={activeTab === 2 ? "tab-active" : "tab-default"}
             onClick={() => handleTabClick(2)}
           >
-            Update Parametrs
+            My Parametrs
           </TabButton>
           <TabButton
             className={activeTab === 3 ? "tab-active" : "tab-default"}
             onClick={() => handleTabClick(3)}
           >
-            Update Email
+            Email
           </TabButton>
           <TabButton
             className={activeTab === 4 ? "tab-active" : "tab-default"}
             onClick={() => handleTabClick(4)}
           >
-            Update Password
+            Password
           </TabButton>
           <TabButton
             className={activeTab === 5 ? "tab-active" : "tab-default"}
             onClick={() => handleTabClick(5)}
           >
-            Update Avatar
+            Avatar
           </TabButton>
         </div>
         {showContent()}

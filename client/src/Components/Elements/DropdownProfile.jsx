@@ -33,10 +33,8 @@ export default function DropdownProfile() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        if (!user) {
-          await fetchData();
-          setLoading(false);
-        }
+        await fetchData();
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
         setLoading(false);

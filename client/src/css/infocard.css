@@ -1,0 +1,23 @@
+.info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 0;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: var(--panel-3);
+}
+
+.info-card-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  .info-card-container {
+    flex-direction: column;
+    width: 100%;
+  }
+}

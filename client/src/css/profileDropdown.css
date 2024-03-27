@@ -52,9 +52,10 @@
 }
 
 .avatar-image {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 32px;
+  object-fit: cover;
 }
 
 .avatar-button {
@@ -63,9 +64,13 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: 6px;
 }
 
-.avatar-button:hover {
-  background-color: var(--neutral-alpha-3);
+.avatar-button:hover > .avatar-image {
+  opacity: 70%;
+}
+
+.avatar-button:active > .avatar-image {
+  width: 28px;
+  height: 28px;
 }

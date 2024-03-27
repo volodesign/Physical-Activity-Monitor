@@ -23,8 +23,9 @@
 }
 
 .header {
-  max-width: 1080px;
+  max-width: 800px;
   width: 100%;
+  height: 64px;
   padding: 16px 0;
   display: flex;
   justify-content: space-between;
@@ -43,12 +44,22 @@
 
 .settings-container {
   margin-bottom: 80px;
-  max-width: 1080px;
+  max-width: 800px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 48px;
+}
+.dashboard-container {
+  margin-bottom: 80px;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   gap: 48px;
 }
 
@@ -130,4 +141,26 @@ form > button {
   flex-direction: row;
   align-items: center;
   gap: 20px;
+}
+
+.logo-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+.logo-button > svg {
+  fill: var(--neutral-12);
+}
+
+.logo-button:hover > svg {
+  opacity: 70%;
+}
+
+.logo-button:active > svg {
+  height: 28px;
+  width: 28px;
 }

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
+import InfoCard from "./Elements/InfoCard";
 
 export default function Dashboard() {
   const { user, fetchData } = useContext(UserContext);
@@ -22,19 +23,16 @@ export default function Dashboard() {
   return (
     <>
       {" "}
-      <div className="content">
+      <div className="dashboard-container">
         {loading ? (
           <p className="text-size-3 text-weight-regular text-style-grey">
             Loading...
           </p>
         ) : (
-          <div className="title-text">
-            <p className="text-size-3 text-weight-regular text-style-grey">
-              Weight
-            </p>
-            <h1 className="text-size-6 text-weight-semibold text-style-neutral">
-              {user?.weight}
-            </h1>
+          <div className="info-card-container">
+            <InfoCard value={user?.weight} title="Weight" />
+            <InfoCard value={user?.height} title="Height" />
+            <InfoCard value={user?.age} title="Age" />
           </div>
         )}
       </div>
