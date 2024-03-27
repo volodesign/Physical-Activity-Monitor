@@ -1,25 +1,31 @@
 const router = require("express").Router();
 const auth = require("../middleware/auth");
+const multer = require("multer");
 const User = require("../models/userModel");
+const cloudinary = require("../config/cloudinary");
 const bcrypt = require("bcrypt");
-const upload = require("../middleware/upload");
-const uploadImage = require("../middleware/uploadImage");
-const uploadController = require("../contollers/uploadController");
+
+const storage = multer.diskStorage({});
+const upload = multer({ storage });
 
 //upload user image
-router.post("/uploadAvatar", uploadImage, upload, auth, async (req, res) => {
-  const avatarURL = await uploadController.uploadAvatar(req, res);
+router.post("/uploadavatar", auth, upload.single("file"), async (req, res) => {
   try {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    const url = result.secure_url;
+
     const user = await User.findById(req.user);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    user.avatar = avatarURL;
+
+    user.avatar = url;
     await user.save();
 
-    res.status(200).send({ message: "Avatar updated" });
+    res.status(200).send("File uploaded successfully");
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Error uploading file:", error);
+    res.status(500).send("Error uploading file");
   }
 });
 

@@ -7,6 +7,16 @@
   opacity: 0.82;
 }
 
+.variant-soft-neutral {
+  background-color: var(--neutral-3);
+  border: none;
+  color: var(--neutral-12);
+}
+
+.variant-soft-neutral:hover {
+  background-color: var(--neutral-4);
+}
+
 .variant-link-neutral {
   background: none;
   border: none;
@@ -51,4 +61,5 @@
   font-weight: 500;
   height: 40px;
   border-radius: 8px;
+  padding: 0 8px;
 }

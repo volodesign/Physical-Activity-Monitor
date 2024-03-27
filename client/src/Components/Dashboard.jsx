@@ -8,9 +8,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        if (!user) {
-          await fetchData();
-        }
+        await fetchData();
         setLoading(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -18,7 +16,8 @@ export default function Dashboard() {
       }
     };
     fetchUserData();
-  }, [fetchData, user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

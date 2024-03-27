@@ -5,6 +5,7 @@ import UpdateParametrs from "./Settings/UpdateParametrs.jsx";
 import UpdateEmail from "./Settings/UpdateEmail";
 import UpdatePassword from "./Settings/UpdatePassword";
 import "../css/tab.css";
+import UpdateAvatar from "./Settings/UpdateAvatar.jsx";
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState(1);
@@ -23,6 +24,8 @@ export default function Settings() {
         return <UpdateEmail />;
       case 4:
         return <UpdatePassword />;
+      case 5:
+        return <UpdateAvatar />;
       default:
         return null;
     }
@@ -55,6 +58,12 @@ export default function Settings() {
             onClick={() => handleTabClick(4)}
           >
             Update Password
+          </TabButton>
+          <TabButton
+            className={activeTab === 5 ? "tab-active" : "tab-default"}
+            onClick={() => handleTabClick(5)}
+          >
+            Update Avatar
           </TabButton>
         </div>
         {showContent()}

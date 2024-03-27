@@ -31,18 +31,18 @@ export default function DropdownProfile() {
   };
 
   useEffect(() => {
-    setLoading(true);
     const fetchUserData = async () => {
       try {
         if (!user) {
           await fetchData();
+          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
+        setLoading(false);
       }
     };
     fetchUserData();
-    setLoading(false);
 
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
