@@ -14,25 +14,18 @@ export default function UpdateParameters() {
   const [initialWeight, setInitialWeight] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        if (!user) {
-          await fetchData();
-        } else {
-          setInitialHeight(user.height || "");
-          setInitialWeight(user.weight || "");
-          setHeight(user.height || "");
-          setWeight(user.weight || "");
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-    fetchUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setInitialHeight(user?.height || "");
+    setInitialWeight(user?.weight || "");
+    setHeight(user?.height || "");
+    setWeight(user?.weight || "");
+    if (updated) {
+      fetchData();
+      setUpdated(false);
+    }
+  }, [user, updated, fetchData]);
 
   async function updateUser(e) {
     e.preventDefault();
@@ -54,6 +47,7 @@ export default function UpdateParameters() {
       await axios.post("http://localhost:3232/api/updateUser", newUserData);
       setError("");
       setSuccess(true);
+      setUpdated(true);
       setInitialHeight(newUserData.height || initialHeight);
       setInitialWeight(newUserData.weight || initialWeight);
     } catch (err) {

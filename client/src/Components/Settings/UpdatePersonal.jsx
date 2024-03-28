@@ -30,36 +30,30 @@ export default function UpdatePersonal() {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        if (!user) {
-          await fetchData();
-        } else {
-          setInitialFirstName(user.first_name);
-          setInitialLastName(user.last_name);
-          setInitialMiddleName(user.middle_name);
-          setInitialGender(user.gender);
-          setInitialAge(user.age);
-          setInitialPhone(user.phone);
-          setInitialCountry(user.country);
+    setInitialFirstName(user?.first_name);
+    setInitialLastName(user?.last_name);
+    setInitialMiddleName(user?.middle_name);
+    setInitialGender(user?.gender);
+    setInitialAge(user?.age);
+    setInitialPhone(user?.phone);
+    setInitialCountry(user?.country);
 
-          setFirstName(user.first_name || "");
-          setLastName(user.last_name || "");
-          setMiddleName(user.middle_name || "");
-          setGender(user.gender || "");
-          setAge(user.age || "");
-          setPhone(user.phone || "");
-          setCountry(user.country || "");
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-    fetchUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setFirstName(user?.first_name || "");
+    setLastName(user?.last_name || "");
+    setMiddleName(user?.middle_name || "");
+    setGender(user?.gender || "");
+    setAge(user?.age || "");
+    setPhone(user?.phone || "");
+    setCountry(user?.country || "");
+
+    if (updated) {
+      fetchData();
+      setUpdated(false);
+    }
+  }, [user, updated, fetchData]);
 
   async function updateUser(e) {
     e.preventDefault();
@@ -96,6 +90,7 @@ export default function UpdatePersonal() {
       await axios.post("http://localhost:3232/api/updateUser", newUserData);
       setError("");
       setSuccess(true);
+      setUpdated(true);
       setInitialFirstName(newUserData.first_name || initialFirst_name);
       setInitialLastName(newUserData.last_name || initialLast_name);
       setInitialMiddleName(newUserData.middle_name || initialMiddle_name);

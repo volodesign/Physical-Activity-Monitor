@@ -6,29 +6,23 @@ import axios from "axios";
 
 export default function UpdateAvatar() {
   const { user, fetchData } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
   const [avatar, setAvatar] = useState("");
   const [initialAvatar, setInitialAvatar] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const fileInputRef = useRef(null);
   const [previewURL, setPreviewURL] = useState(null);
+  const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        if (!user) {
-          await fetchData();
-        } else {
-          setInitialAvatar(user.avatar || "");
-          setAvatar(user.avatar || "");
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-    fetchUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setInitialAvatar(user?.avatar || "");
+    setAvatar(user?.avatar || "");
+    if (updated) {
+      fetchData();
+      setUpdated(false);
+    }
+  }, [user, updated, fetchData]);
 
   const handleClick = () => {
     fileInputRef.current.click();
@@ -42,7 +36,7 @@ export default function UpdateAvatar() {
 
   async function updateAvatar(e) {
     e.preventDefault();
-
+    setIsLoading(true);
     try {
       const formData = new FormData();
       formData.append("file", avatar);
@@ -65,11 +59,13 @@ export default function UpdateAvatar() {
         setSuccess(false);
         setError("Something went wrong");
       }
+      setUpdated(true);
     } catch (err) {
       console.error("Error updating avatar:", err);
       setSuccess(false);
       setError("Something went wrong");
     }
+    setIsLoading(false);
   }
 
   return (
@@ -109,7 +105,11 @@ export default function UpdateAvatar() {
           </Button>
         </div>
 
-        <Button type="submit" className="variant-solid-neutral size-3">
+        <Button
+          type="submit"
+          className="variant-solid-neutral size-3"
+          isLoading={isLoading}
+        >
           Update avatar
         </Button>
       </form>

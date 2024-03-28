@@ -1,3 +1,15 @@
+.loading {
+  border: none;
+  background-color: var(--neutral-alpha-3);
+  color: var(--neutral-alpha-8);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  height: 40px;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
 .variant-solid-neutral {
   background-color: var(--neutral-12);
   border: none;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/input.css";
 import "../../css/text.css";
 
@@ -14,7 +14,13 @@ export default function Dropdown({
   pattern,
   className,
 }) {
-  const [selectedValue, setSelectedValue] = useState(value || "");
+  const [selectedValue, setSelectedValue] = useState("");
+
+  useEffect(() => {
+    if (value !== undefined) {
+      setSelectedValue(value);
+    }
+  }, [value]);
 
   const [focused, setFocused] = useState(false);
 

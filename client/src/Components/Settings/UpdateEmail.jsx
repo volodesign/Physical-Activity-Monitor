@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Alert from "../Elements/Alert";
 import InputText from "../Elements/InputText";
 import Button from "../Elements/Button";
+import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 
 export default function UpdateEmail() {
+  const { fetchData } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [updated, setUpdated] = useState(false);
   const [existingUser, setExistingUser] = useState(false);
+
+  useEffect(() => {
+    if (updated) {
+      fetchData();
+      setUpdated(false);
+    }
+  }, [updated, fetchData]);
 
   async function updateEmail(e) {
     e.preventDefault();
@@ -22,6 +32,7 @@ export default function UpdateEmail() {
         setError(false);
         setSuccess(true);
         setEmail("");
+        setUpdated(true);
       }
     } catch (err) {
       setExistingUser(true);
