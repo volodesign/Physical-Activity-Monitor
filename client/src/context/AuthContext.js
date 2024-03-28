@@ -1,19 +1,25 @@
 import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useCallback } from "react";
 
 const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [loggedIn, setLoggedIn] = useState(undefined);
 
-  async function getLoggedIn() {
-    const loggedInRes = await axios.get("http://localhost:3232/auth/loggedIn");
-    setLoggedIn(loggedInRes.data);
-  }
+  const getLoggedIn = useCallback(async () => {
+    try {
+      const loggedInRes = await axios.get(
+        "http://localhost:3232/auth/loggedIn"
+      );
+      setLoggedIn(loggedInRes.data);
+    } catch (error) {
+      console.error("Error fetching loggedIn status:", error);
+    }
+  }, []);
 
   useEffect(() => {
     getLoggedIn();
-  }, []);
+  }, [getLoggedIn]);
 
   return (
     <AuthContext.Provider value={{ loggedIn, getLoggedIn }}>

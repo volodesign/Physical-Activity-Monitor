@@ -40,6 +40,7 @@ export default function DropdownProfile() {
         setLoading(false);
       }
     };
+
     fetchUserData();
 
     const handleClickOutside = (event) => {
@@ -52,8 +53,8 @@ export default function DropdownProfile() {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchData]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
