@@ -10,6 +10,7 @@ export default function UpdateAvatar() {
   const [avatar, setAvatar] = useState("");
   const [initialAvatar, setInitialAvatar] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [success, setSuccess] = useState(false);
   const fileInputRef = useRef(null);
   const [previewURL, setPreviewURL] = useState(null);
@@ -31,15 +32,52 @@ export default function UpdateAvatar() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setAvatar(file);
-    setPreviewURL(URL.createObjectURL(file)); // Set preview URL
+    if (!file) {
+      return;
+    }
+    setPreviewURL(URL.createObjectURL(file));
+  };
+
+  const deleteAvatar = async () => {
+    setError("");
+    setSuccess(false);
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        "http://localhost:3232/api/deleteAvatar",
+        {}
+      );
+      if (response.status === 200) {
+        setError("");
+        setSuccess(true);
+        setSuccessMessage("Avatar deleted!");
+        setInitialAvatar(user.avatar);
+        setPreviewURL(null);
+      } else {
+        setSuccess(false);
+        setError("Something went wrong");
+      }
+      setUpdated(true);
+    } catch (error) {
+      console.error("Error deleting avatar:", error);
+      setSuccess(false);
+      setError("Something went wrong");
+    }
+    setIsLoading(false);
   };
 
   async function updateAvatar(e) {
     e.preventDefault();
     setIsLoading(true);
+    setError("");
+    setSuccess(false);
     try {
       const formData = new FormData();
       formData.append("file", avatar);
+
+      if (!formData) {
+        return;
+      }
 
       const response = await axios.post(
         "http://localhost:3232/api/uploadAvatar",
@@ -54,6 +92,7 @@ export default function UpdateAvatar() {
       if (response.status === 200) {
         setError("");
         setSuccess(true);
+        setSuccessMessage("Avatar updated!");
         setInitialAvatar(previewURL);
       } else {
         setSuccess(false);
@@ -79,7 +118,7 @@ export default function UpdateAvatar() {
         </p>
       </div>
       {error && <Alert className="alert error">{error}</Alert>}
-      {success && <Alert className="alert success">Avatar updated!</Alert>}
+      {success && <Alert className="alert success">{successMessage}</Alert>}
 
       <form onSubmit={updateAvatar}>
         <div className="avatar-upload">
@@ -102,6 +141,13 @@ export default function UpdateAvatar() {
             onClick={handleClick}
           >
             Choose File
+          </Button>
+          <Button
+            className="variant-soft-danger size-3"
+            type="button"
+            onClick={deleteAvatar}
+          >
+            Delete
           </Button>
         </div>
 

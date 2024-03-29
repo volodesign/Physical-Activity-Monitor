@@ -1,9 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import InfoCard from "./Elements/InfoCard";
 
 export default function Dashboard() {
-  const { user } = useContext(UserContext);
+  const { user, fetchData } = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (loading) {
+      fetchData();
+      setLoading(false);
+    }
+  }, [fetchData, loading]);
 
   return (
     <>

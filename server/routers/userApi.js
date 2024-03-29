@@ -12,20 +12,63 @@ const upload = multer({ storage });
 router.post("/uploadavatar", auth, upload.single("file"), async (req, res) => {
   try {
     const result = await cloudinary.uploader.upload(req.file.path);
-    const url = result.secure_url;
+    const newUrl = result.secure_url;
 
     const user = await User.findById(req.user);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    user.avatar = url;
+    // Check if the user already has an avatar
+    if (
+      user.avatar !==
+      "https://res.cloudinary.com/dtl2l9omr/image/upload/v1711479355/avatar/k4jrt1fmdvojl3wwm56g.jpg"
+    ) {
+      // Delete the current avatar from Cloudinary
+      const publicId = user.avatar.split("/").pop().split(".")[0];
+      await cloudinary.uploader.destroy(publicId);
+    }
+
+    // Save the new avatar URL to the user document
+    user.avatar = newUrl;
     await user.save();
 
     res.status(200).send("File uploaded successfully");
   } catch (error) {
     console.error("Error uploading file:", error);
     res.status(500).send("Error uploading file");
+  }
+});
+
+//delete avatar
+router.post("/deleteavatar", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the user already has an avatar
+    if (
+      user.avatar !==
+      "https://res.cloudinary.com/dtl2l9omr/image/upload/v1711479355/avatar/k4jrt1fmdvojl3wwm56g.jpg"
+    ) {
+      // Delete the current avatar from Cloudinary
+      const publicId = user.avatar.split("/").pop().split(".")[0];
+      await cloudinary.uploader.destroy(publicId);
+
+      // Set avatar to default URL
+      user.avatar =
+        "https://res.cloudinary.com/dtl2l9omr/image/upload/v1711479355/avatar/k4jrt1fmdvojl3wwm56g.jpg";
+      await user.save();
+
+      res.status(200).send("Avatar deleted and set to default successfully");
+    } else {
+      res.status(200).send("No avatar to delete. Already set to default.");
+    }
+  } catch (error) {
+    console.error("Error deleting avatar:", error);
+    res.status(500).send("Error deleting avatar");
   }
 });
 
