@@ -35,3 +35,4 @@ mongoose
 app.use("/auth", require("./routers/userRouter"));
 app.use("/api", require("./routers/userApi"));
 app.use("/api/files", require("./routers/filesApi"));
+app.use("/api/workouts", require("./routers/workoutApi"));
