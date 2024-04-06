@@ -34,3 +34,4 @@ mongoose
 //set-up routes
 app.use("/auth", require("./routers/userRouter"));
 app.use("/api", require("./routers/userApi"));
+app.use("/api/files", require("./routers/filesApi"));

@@ -39,6 +39,16 @@
   background-color: var(--danger-alpha-4);
 }
 
+.variant-ghost-danger {
+  background: none;
+  border: none;
+  color: var(--danger-11);
+}
+
+.variant-ghost-danger:hover {
+  background-color: var(--danger-alpha-3);
+}
+
 .variant-link-neutral {
   background: none;
   border: none;
@@ -69,6 +79,7 @@
   font-weight: 500;
   height: 24px;
   border-radius: 4px;
+  padding: 0 8px;
 }
 .size-2 {
   font-size: 14px;
@@ -76,6 +87,7 @@
   font-weight: 500;
   height: 32px;
   border-radius: 6px;
+  padding: 0 12px;
 }
 .size-3 {
   font-size: 14px;

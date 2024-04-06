@@ -1,26 +1,43 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/UserContext";
-import InfoCard from "./Elements/InfoCard";
+import React, { useState } from "react";
+import TabButton from "./Elements/TabButton";
+import DashboardContent from "./Dashboard/DashboardContent";
+import Files from "./Dashboard/Files";
 
 export default function Dashboard() {
-  const { user, fetchData } = useContext(UserContext);
-  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState(1);
 
-  useEffect(() => {
-    if (loading) {
-      fetchData();
-      setLoading(false);
+  const handleTabClick = (tabIndex) => {
+    setActiveTab(tabIndex);
+  };
+
+  const showContent = () => {
+    switch (activeTab) {
+      case 1:
+        return <DashboardContent />;
+      case 2:
+        return <Files />;
+      default:
+        return null;
     }
-  }, [fetchData, loading]);
-
+  };
   return (
     <>
       <div className="dashboard-container">
-        <div className="info-card-container">
-          <InfoCard value={user?.weight} title="Weight" />
-          <InfoCard value={user?.height} title="Height" />
-          <InfoCard value={user?.age} title="Age" />
+        <div className="tabgroup">
+          <TabButton
+            className={activeTab === 1 ? "tab-active" : "tab-default"}
+            onClick={() => handleTabClick(1)}
+          >
+            Dashboard
+          </TabButton>
+          <TabButton
+            className={activeTab === 2 ? "tab-active" : "tab-default"}
+            onClick={() => handleTabClick(2)}
+          >
+            My files
+          </TabButton>
         </div>
+        {showContent()}
       </div>
     </>
   );
