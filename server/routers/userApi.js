@@ -54,7 +54,16 @@ router.post("/deleteavatar", auth, async (req, res) => {
       user.avatar !==
       "https://res.cloudinary.com/dtl2l9omr/image/upload/v1711479355/avatar/k4jrt1fmdvojl3wwm56g.jpg"
     ) {
-      const publicId = user.avatar.split("/").pop().split(".")[0];
+      const parts = user.avatar.split("/");
+      const tempURL =
+        parts[parts.length - 3] +
+        "/" +
+        parts[parts.length - 2] +
+        "/" +
+        parts[parts.length - 1];
+
+      const publicId = tempURL.split(".").slice(0, -1).join(".");
+
       await cloudinary.uploader.destroy(publicId);
 
       user.avatar =
