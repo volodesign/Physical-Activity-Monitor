@@ -97,12 +97,14 @@ export default function UpdateAvatar() {
       } else {
         setSuccess(false);
         setError("Something went wrong");
+        setInitialAvatar(user.avatar);
       }
       setUpdated(true);
     } catch (err) {
       console.error("Error updating avatar:", err);
       setSuccess(false);
       setError("Something went wrong");
+      setInitialAvatar(user.avatar);
     }
     setIsLoading(false);
   }

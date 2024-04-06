@@ -16,6 +16,9 @@ export default function DashboardContent() {
 
   return (
     <>
+      <h1 className="text-size-6 text-weight-semibold text-style-neutral">
+        Dashboard
+      </h1>
       <div className="info-card-container">
         <InfoCard value={user?.weight} title="Weight" />
         <InfoCard value={user?.height} title="Height" />

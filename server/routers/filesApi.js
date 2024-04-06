@@ -6,7 +6,45 @@ const File = require("../models/fileModel");
 const cloudinary = require("../config/cloudinary");
 
 const storage = multer.diskStorage({});
-const upload = multer({ storage });
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 8 * 1024 * 1024 }, // 8MB limit
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype.startsWith("image/") ||
+      file.mimetype.startsWith("video/") ||
+      file.mimetype.startsWith("audio/") ||
+      file.mimetype.startsWith("application/")
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error("Unsupported file type"));
+    }
+  },
+});
+
+router.post("/uploadfile", auth, upload.single("file"), async (req, res) => {
+  try {
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: `${req.user}/files/`,
+    });
+    const newUrl = result.secure_url;
+    const fileDetails = {
+      fileName: req.file.originalname,
+      fileType: req.file.mimetype,
+      fileSize: req.file.size,
+      filePath: newUrl,
+      user: req.user,
+    };
+    const file = new File(fileDetails);
+    await file.save();
+
+    res.status(200).send("File uploaded successfully");
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    res.status(500).send("Error uploading file");
+  }
+});
 
 router.get("/filesdata/:userID", auth, async (req, res) => {
   try {
@@ -44,29 +82,6 @@ router.post("/deletefile/:fileID", auth, async (req, res) => {
   } catch (error) {
     console.error("Error deleting file:", error);
     res.status(500).json({ message: "Internal Server Error" });
-  }
-});
-
-router.post("/uploadfile", auth, upload.single("file"), async (req, res) => {
-  try {
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      folder: `${req.user}/files/`,
-    });
-    const newUrl = result.secure_url;
-    const fileDetails = {
-      fileName: req.file.originalname,
-      fileType: req.file.mimetype,
-      fileSize: req.file.size,
-      filePath: newUrl,
-      user: req.user,
-    };
-    const file = new File(fileDetails);
-    await file.save();
-
-    res.status(200).send("File uploaded successfully");
-  } catch (error) {
-    console.error("Error uploading file:", error);
-    res.status(500).send("Error uploading file");
   }
 });
 
