@@ -44,12 +44,13 @@ export default function Workouts() {
         console.error("Error fetching workouts:", error);
       }
     };
-    if ((loading && user) || updated) {
+    if (user && (updated || loading)) {
       fetchWorkouts();
       setLoading(false);
       setUpdated(false);
     }
   }, [loading, user, updated]);
+
   return (
     <>
       <div className="files-title-container">

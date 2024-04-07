@@ -13,7 +13,7 @@ const workoutSchema = new mongoose.Schema({
     type: Number,
     require: true,
   },
-  Date: {
+  date: {
     type: Date,
     default: Date.now,
   },

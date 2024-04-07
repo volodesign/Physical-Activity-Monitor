@@ -5,14 +5,16 @@ import AuthContext from "../context/AuthContext";
 const UserContext = createContext();
 
 function UserContextProvider(props) {
-  const { getLoggedIn } = useContext(AuthContext);
+  const { loggedIn } = useContext(AuthContext);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (getLoggedIn) {
+    if (loggedIn) {
       fetchData();
+    } else {
+      setUser(null);
     }
-  }, [getLoggedIn]);
+  }, [loggedIn]);
 
   async function fetchData() {
     try {

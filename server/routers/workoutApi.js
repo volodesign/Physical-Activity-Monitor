@@ -5,16 +5,24 @@ const Workout = require("../models/workoutModel");
 
 //delete workout
 router.post("/delete/:workoutId", auth, async (req, res) => {
+  const workoutId = req.params.workoutId;
   try {
-    const workout = await Workout.findById(req.params.workoutId);
-
+    const workout = await Workout.findById(workoutId);
     if (!workout) {
-      return res.status(404).send("Workout not found");
+      return res.status(404).json({ message: "Workout not found" });
     }
 
-    await workout.deleteOne();
+    const user = await User.findById(workout.user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    res.status(200).send("Workout deleted successfully");
+    user.workouts.pull(workoutId);
+    await user.save();
+
+    await Workout.deleteOne({ _id: workoutId });
+
+    res.json({ message: "Workout deleted successfully" });
   } catch (error) {
     console.error("Error deleting workout:", error);
     res.status(500).send("Error deleting workout");
@@ -23,16 +31,25 @@ router.post("/delete/:workoutId", auth, async (req, res) => {
 
 //create new workout
 router.post("/create", auth, async (req, res) => {
+  const { type, duration, calories } = req.body;
   try {
-    const workoutDetails = {
-      type: req.body.type,
-      duration: req.body.duration,
-      calories: req.body.calories,
-      user: req.user,
-    };
+    const user = await User.findById(req.user);
 
-    const workout = new Workout(workoutDetails);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const workout = new Workout({
+      user: req.user,
+      type: type,
+      duration: duration,
+      calories: calories,
+    });
+
     await workout.save();
+
+    user.workouts.push(workout);
+    await user.save();
 
     res.status(200).send("Workout created successfully");
   } catch (error) {
@@ -42,10 +59,11 @@ router.post("/create", auth, async (req, res) => {
 });
 
 //get all user workouts
-router.get("/getdata/:userID", auth, async (req, res) => {
+router.get("/getdata/:userId", auth, async (req, res) => {
+  const userId = req.params.userId;
   try {
-    const workouts = await Workout.find({ user: req.params.userID });
-    res.json(workouts);
+    const userWorkouts = await Workout.find({ user: userId });
+    res.json(userWorkouts);
   } catch (error) {
     console.error("Error fetching user workouts:", error);
     res.status(500).json({ message: "Internal Server Error" });

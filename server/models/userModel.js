@@ -60,6 +60,7 @@ const userSchema = new mongoose.Schema({
     default:
       "https://res.cloudinary.com/dtl2l9omr/image/upload/v1711479355/avatar/k4jrt1fmdvojl3wwm56g.jpg",
   },
+  workouts: [{ type: mongoose.Schema.Types.ObjectId, ref: "workout" }],
 });
 
 const User = mongoose.model("user", userSchema);

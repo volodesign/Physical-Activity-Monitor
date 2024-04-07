@@ -3,7 +3,7 @@ import Button from "./Button";
 import "../../css/workoutItem.css";
 
 export default function WorkoutItem({ workout, onDelete, onEdit }) {
-  const dateObj = new Date(workout.Date);
+  const dateObj = new Date(workout.date);
   const workoutDate = dateObj.toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
@@ -37,21 +37,21 @@ export default function WorkoutItem({ workout, onDelete, onEdit }) {
           <div className="workout-details">
             <div className="details-item">
               {" "}
-              <i class="fa-solid fa-fire fa-md"></i>
+              <i className="fa-solid fa-fire fa-md"></i>
               <p className="text-size-3 text-weight-medium text-style-grey">
                 {workout.calories} kcal
               </p>
             </div>
             <div className="details-item">
               {" "}
-              <i class="fa-solid fa-clock fa-md"></i>
+              <i className="fa-solid fa-clock fa-md"></i>
               <p className="text-size-3 text-weight-medium text-style-grey">
                 {convertTime(workout.duration)}
               </p>
             </div>
             <div className="details-item">
               {" "}
-              <i class="fa-solid fa-calendar fa-md"></i>
+              <i className="fa-solid fa-calendar fa-md"></i>
               <p className="text-size-3 text-weight-medium text-style-grey">
                 {workoutDate}
               </p>
