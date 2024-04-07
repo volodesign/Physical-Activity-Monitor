@@ -23,7 +23,7 @@ export default function ForgotPasswordSuccess() {
 
         <Button
           type="Button"
-          className="size-3 variant-link-neutral"
+          className="size-link-3 variant-link-neutral"
           onClick={navigateLogin}
         >
           Back to login

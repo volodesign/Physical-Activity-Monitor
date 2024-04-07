@@ -49,7 +49,7 @@ export default function Register() {
 
       await axios.post("http://localhost:3232/auth", registerData);
       await getLoggedIn();
-      navigate("/dashboard");
+      navigate("/app");
     } catch (err) {
       window.scrollTo(0, 0);
       setExistingUser(true);

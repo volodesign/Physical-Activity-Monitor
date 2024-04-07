@@ -94,41 +94,43 @@ export default function Files() {
 
   return (
     <>
-      <div className="files-title-container">
-        <h1 className="text-size-6 text-weight-semibold text-style-neutral">
-          My files
-        </h1>
-        <input
-          type="file"
-          ref={fileInputRef}
-          style={{ display: "none" }}
-          onChange={handleFileChange}
-        />
-        <Button
-          className="variant-solid-neutral size-3"
-          type="button"
-          isLoading={isLoading}
-          onClick={handleClick}
-        >
-          Upload
-        </Button>
-      </div>
-      <div className="files-list-container">
-        {error && <Alert className="alert error">{error}</Alert>}
-        {success && <Alert className="alert success">{successMessage}</Alert>}
-        {files.length === 0 ? (
-          <p className="text-size-4 text-weight-regular text-style-grey">
-            You don't have any files yet.
-          </p>
-        ) : (
-          files.map((file, index) => (
-            <FileItem
-              key={index}
-              file={file}
-              onDelete={() => deleteFile(file._id)}
-            />
-          ))
-        )}
+      <div className="app-container">
+        <div className="files-title-container">
+          <h1 className="text-size-6 text-weight-semibold text-style-neutral">
+            My files
+          </h1>
+          <input
+            type="file"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+          <Button
+            className="variant-solid-neutral size-3"
+            type="button"
+            isLoading={isLoading}
+            onClick={handleClick}
+          >
+            Upload
+          </Button>
+        </div>
+        <div className="files-list-container">
+          {error && <Alert className="alert error">{error}</Alert>}
+          {success && <Alert className="alert success">{successMessage}</Alert>}
+          {files.length === 0 ? (
+            <p className="text-size-4 text-weight-regular text-style-grey">
+              You don't have any files yet.
+            </p>
+          ) : (
+            files.map((file, index) => (
+              <FileItem
+                key={index}
+                file={file}
+                onDelete={() => deleteFile(file._id)}
+              />
+            ))
+          )}
+        </div>
       </div>
     </>
   );

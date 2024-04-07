@@ -1,0 +1,38 @@
+.workout-item-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.workout-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.workout-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.details-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.details-item > i {
+  color: var(--neutral-11);
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}

@@ -16,7 +16,7 @@ export default function DropdownProfile() {
   };
 
   const settingsNavigate = () => {
-    navigate("/settings");
+    navigate("/app/settings");
     setIsOpen(false);
   };
 

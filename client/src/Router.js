@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Layout/Navbar";
 import Register from "./Components/Auth/Register";
 import Login from "./Components/Auth/Login";
-import Dashboard from "./Components/Dashboard";
+import App from "./Components/App";
 import Settings from "./Components/Settings";
+import Files from "./Components/App/Files";
 import AuthContext from "./context/AuthContext";
 import ForgotPassword from "./Components/Auth/ForgotPassword";
 import ResetPassword from "./Components/Auth/ResetPassword";
@@ -23,7 +24,7 @@ function Router() {
             <Route path="/" element={<Navigate to="/signin" />} />
             <Route path="/signup" element={<Register />} />
             <Route path="/signin" element={<Login />} />
-            <Route path="/dashboard" element={<Navigate to="/signin" />} />
+            <Route path="/app" element={<Navigate to="/signin" />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route
@@ -38,9 +39,10 @@ function Router() {
         )}
         {loggedIn === true && (
           <>
-            <Route path="/" element={<Navigate to="/dashboard" />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/" element={<Navigate to="/app" />} />
+            <Route path="/app" element={<App />} />
+            <Route path="/app/files" element={<Files />} />
+            <Route path="/app/settings" element={<Settings />} />
           </>
         )}
       </Routes>

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import Button from "../Elements/Button";
 import DropdownProfile from "../Elements/DropdownProfile";
+import AppNav from "./AppNav";
 
 export default function Navbar() {
   const { loggedIn } = useContext(AuthContext);
@@ -52,7 +53,7 @@ export default function Navbar() {
               <>
                 <Button
                   onClick={signupNavigate}
-                  className="size-3 variant-link-neutral"
+                  className="size-link-3 variant-link-neutral"
                 >
                   Create an account
                 </Button>
@@ -61,7 +62,7 @@ export default function Navbar() {
               <>
                 <Button
                   onClick={signinNavigate}
-                  className="size-3 variant-link-neutral"
+                  className="size-link-3 variant-link-neutral"
                 >
                   Login
                 </Button>
@@ -73,6 +74,7 @@ export default function Navbar() {
 
       {loggedIn === true && (
         <>
+          <AppNav />
           <DropdownProfile />
         </>
       )}

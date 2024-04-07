@@ -34,7 +34,7 @@ export default function Login() {
 
       await axios.post("http://localhost:3232/auth/login", loginData);
       await getLoggedIn();
-      navigate("/dashboard");
+      navigate("/app");
     } catch (err) {
       if (err.response && err.response.status === 401) {
         setError("Wrong credentials.");
@@ -81,7 +81,7 @@ export default function Login() {
           <div className="link-wrap">
             <Button
               type="Button"
-              className="size-3 variant-link-neutral"
+              className="size-link-3 variant-link-neutral"
               onClick={navigateForgotPassword}
             >
               Forgot password?
