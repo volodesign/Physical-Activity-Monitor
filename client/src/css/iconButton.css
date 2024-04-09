@@ -1,0 +1,102 @@
+.loading {
+  border: none;
+  background-color: var(--neutral-alpha-3);
+  color: var(--neutral-alpha-8);
+  height: 40px;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+.ib-variant-solid-neutral {
+  background-color: var(--neutral-12);
+  border: none;
+}
+
+.ib-variant-solid-neutral > i {
+  color: var(--neutral-1);
+}
+
+.ib-variant-solid-neutral:hover {
+  opacity: 0.82;
+}
+
+.ib-variant-soft-neutral {
+  background-color: var(--neutral-alpha-3);
+  border: none;
+}
+
+.ib-variant-soft-neutral:hover {
+  background-color: var(--neutral-alpha-4);
+}
+
+.ib-variant-soft-neutral > i {
+  color: var(--neutral-12);
+}
+
+.ib-variant-ghost-neutral {
+  background: none;
+  border: none;
+}
+
+.ib-variant-ghost-neutral:hover {
+  background-color: var(--neutral-alpha-3);
+}
+
+.ib-variant-ghost-neutral > i {
+  color: var(--neutral-12);
+}
+
+.ib-variant-soft-danger {
+  background-color: var(--danger-alpha-3);
+  border: none;
+  color: var(--danger-11);
+}
+
+.ib-variant-soft-danger > i {
+  color: var(--danger-11);
+}
+
+.ib-variant-soft-danger:hover {
+  background-color: var(--danger-alpha-4);
+}
+
+.ib-variant-ghost-danger {
+  background: none;
+  border: none;
+}
+
+.ib-variant-ghost-danger > i {
+  color: var(--danger-11);
+}
+
+.ib-variant-ghost-danger:hover {
+  background-color: var(--danger-alpha-3);
+}
+
+.ib-size-1 {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+.ib-size-2 {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+.ib-size-3 {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 40px;
+  border-radius: 8px;
+}

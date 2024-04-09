@@ -4,6 +4,8 @@ import Button from "../Elements/Button";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import Alert from "../Elements/Alert";
+import ModalPopup from "../Elements/ModalPopup";
+import NewWorkout from "../ModalContent/NewWorkout";
 
 export default function Workouts() {
   const [workouts, setWorkouts] = useState([]);
@@ -13,6 +15,19 @@ export default function Workouts() {
   const [success, setSuccess] = useState();
   const [successMessage, setSuccessMessage] = useState("");
   const { user } = useContext(UserContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleUpdate = (newValue) => {
+    setUpdated(newValue);
+  };
 
   const deleteWorkout = async (workoutID) => {
     setError("");
@@ -49,6 +64,11 @@ export default function Workouts() {
       setLoading(false);
       setUpdated(false);
     }
+    if (updated) {
+      setIsOpen(false);
+      setUpdated(false);
+      setError("");
+    }
   }, [loading, user, updated]);
 
   return (
@@ -57,9 +77,16 @@ export default function Workouts() {
         <h1 className="text-size-6 text-weight-semibold text-style-neutral">
           Workouts
         </h1>
-        <Button className="variant-solid-neutral size-3" type="button">
+        <Button
+          className="variant-solid-neutral size-3"
+          type="button"
+          onClick={openModal}
+        >
           New workout
         </Button>
+        <ModalPopup isOpen={isOpen} onClose={closeModal} title="New workout">
+          <NewWorkout updated={updated} setUpdated={handleUpdate} />
+        </ModalPopup>
       </div>
       {error && <Alert className="alert error">{error}</Alert>}
       {success && <Alert className="alert success">{successMessage}</Alert>}
@@ -69,13 +96,16 @@ export default function Workouts() {
             You don't have any workouts yet.
           </p>
         ) : (
-          workouts.map((workouts, index) => (
-            <WorkoutItem
-              key={index}
-              workout={workouts}
-              onDelete={() => deleteWorkout(workouts._id)}
-            />
-          ))
+          workouts
+            .slice()
+            .reverse()
+            .map((workouts, index) => (
+              <WorkoutItem
+                key={index}
+                workout={workouts}
+                onDelete={() => deleteWorkout(workouts._id)}
+              />
+            ))
         )}
       </div>
     </>

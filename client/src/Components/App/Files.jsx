@@ -122,13 +122,16 @@ export default function Files() {
               You don't have any files yet.
             </p>
           ) : (
-            files.map((file, index) => (
-              <FileItem
-                key={index}
-                file={file}
-                onDelete={() => deleteFile(file._id)}
-              />
-            ))
+            files
+              .slice()
+              .reverse()
+              .map((file, index) => (
+                <FileItem
+                  key={index}
+                  file={file}
+                  onDelete={() => deleteFile(file._id)}
+                />
+              ))
           )}
         </div>
       </div>

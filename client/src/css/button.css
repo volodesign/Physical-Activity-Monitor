@@ -10,6 +10,10 @@
   padding: 0 8px;
 }
 
+.width-full {
+  width: 100%;
+}
+
 .variant-solid-neutral {
   background-color: var(--neutral-12);
   border: none;
