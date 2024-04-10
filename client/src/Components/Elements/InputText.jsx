@@ -17,6 +17,7 @@ export default function InputText({
   className,
   emailExists,
   isPassword,
+  name,
 }) {
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -60,6 +61,7 @@ export default function InputText({
               onFocus={onFocus}
               min={min}
               max={max}
+              name={name}
             />
             <button
               type="button"

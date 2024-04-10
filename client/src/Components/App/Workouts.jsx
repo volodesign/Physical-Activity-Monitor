@@ -19,6 +19,8 @@ export default function Workouts() {
 
   const openModal = () => {
     setIsOpen(true);
+    setError("");
+    setSuccess(false);
   };
 
   const closeModal = () => {
@@ -27,6 +29,12 @@ export default function Workouts() {
 
   const handleUpdate = (newValue) => {
     setUpdated(newValue);
+  };
+
+  const handleSuccess = (newValue) => {
+    setError("");
+    setSuccessMessage("Workout created");
+    setSuccess(true);
   };
 
   const deleteWorkout = async (workoutID) => {
@@ -85,7 +93,11 @@ export default function Workouts() {
           New workout
         </Button>
         <ModalPopup isOpen={isOpen} onClose={closeModal} title="New workout">
-          <NewWorkout updated={updated} setUpdated={handleUpdate} />
+          <NewWorkout
+            updated={updated}
+            setUpdated={handleUpdate}
+            setSuccess={handleSuccess}
+          />
         </ModalPopup>
       </div>
       {error && <Alert className="alert error">{error}</Alert>}

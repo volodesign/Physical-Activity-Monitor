@@ -1,0 +1,26 @@
+[
+    {
+        "value": "Workout",
+        "label": "Workout"
+    },
+    {
+        "value": "Running",
+        "label": "Running"
+    },
+    {
+        "value": "Elliptical",
+        "label": "Elliptical"
+    },
+    {
+        "value": "Stretching",
+        "label": "Stretching"
+    },
+    {
+        "value": "Walking",
+        "label": "Walking"
+    },
+    {
+        "value": "Other",
+        "label": "Other"
+    }
+]
