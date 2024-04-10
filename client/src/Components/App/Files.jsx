@@ -11,24 +11,22 @@ export default function Files() {
   const [uploaded, setUploaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
   const fileInputRef = useRef(null);
 
   const deleteFile = async (fileId) => {
     setError("");
-    setSuccess(false);
+    setSuccess("");
     try {
       await axios.post(
         `http://localhost:3232/api/files/deletefile/${fileId}`,
         {}
       );
       setError("");
-      setSuccess(true);
-      setSuccessMessage("File deleted!");
+      setSuccess("File deleted!");
       setUploaded(true);
     } catch (error) {
-      setSuccess(false);
+      setSuccess("");
       setError("Something went wrong");
       console.error("Error deleting file:", error);
     }
@@ -41,7 +39,7 @@ export default function Files() {
   const handleFileChange = (e) => {
     setIsLoading(true);
     setError("");
-    setSuccess(false);
+    setSuccess("");
     const file = e.target.files[0];
 
     if (!file) {
@@ -63,14 +61,12 @@ export default function Files() {
         setUploaded(true);
         setIsLoading(false);
         setError("");
-        setSuccess(true);
-        setSuccessMessage("File uploaded!");
-        // Clear file input value to allow uploading the same file again
+        setSuccess("File uploaded!");
         fileInputRef.current.value = "";
       })
       .catch((error) => {
         console.error("Error uploading file", error);
-        setSuccess(false);
+        setSuccess("");
         setError("Something went wrong");
         setIsLoading(false);
       });
@@ -116,7 +112,7 @@ export default function Files() {
         </div>
         <div className="files-list-container">
           {error && <Alert className="alert error">{error}</Alert>}
-          {success && <Alert className="alert success">{successMessage}</Alert>}
+          {success && <Alert className="alert success">{success}</Alert>}
           {files.length === 0 ? (
             <p className="text-size-4 text-weight-regular text-style-grey">
               You don't have any files yet.

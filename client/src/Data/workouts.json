@@ -8,16 +8,16 @@
         "label": "Running"
     },
     {
-        "value": "Elliptical",
-        "label": "Elliptical"
+        "value": "Swimming",
+        "label": "Swimming"
     },
     {
         "value": "Stretching",
         "label": "Stretching"
     },
     {
-        "value": "Walking",
-        "label": "Walking"
+        "value": "Biking",
+        "label": "Biking"
     },
     {
         "value": "Other",

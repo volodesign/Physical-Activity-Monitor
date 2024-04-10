@@ -9,7 +9,7 @@ export default function UpdateEmail() {
   const { fetchData } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
   const [updated, setUpdated] = useState(false);
   const [existingUser, setExistingUser] = useState(false);
 
@@ -25,12 +25,12 @@ export default function UpdateEmail() {
 
     try {
       if (email === "") {
-        setSuccess(false);
+        setSuccess("");
         setError("Enter your new email first");
       } else {
         await axios.post("http://localhost:3232/api/updateEmail", { email });
-        setError(false);
-        setSuccess(true);
+        setError("");
+        setSuccess("Email updated!");
         setEmail("");
         setUpdated(true);
       }
@@ -38,10 +38,10 @@ export default function UpdateEmail() {
       setExistingUser(true);
       console.error(err);
       if (err.response && err.response.status === 400) {
-        setSuccess(false);
+        setSuccess("");
         setError("User with this email already exists");
       } else {
-        setSuccess(false);
+        setSuccess("");
         setError("Something went wrong");
       }
     }
@@ -58,7 +58,7 @@ export default function UpdateEmail() {
         </p>
       </div>
       {error && <Alert className="alert error">{error}</Alert>}
-      {success && <Alert className="alert success">Email updated!</Alert>}
+      {success && <Alert className="alert success">{success}</Alert>}
       <form onSubmit={updateEmail}>
         <InputText
           value={email}
@@ -72,8 +72,8 @@ export default function UpdateEmail() {
           errorMessage="Invalid email"
           required={false}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
           emailExists={existingUser}
         />

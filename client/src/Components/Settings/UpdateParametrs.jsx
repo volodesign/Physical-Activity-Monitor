@@ -13,7 +13,7 @@ export default function UpdateParameters() {
   const [initialHeight, setInitialHeight] = useState("");
   const [initialWeight, setInitialWeight] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
@@ -46,13 +46,13 @@ export default function UpdateParameters() {
 
       await axios.post("http://localhost:3232/api/updateUser", newUserData);
       setError("");
-      setSuccess(true);
+      setSuccess("Updated!");
       setUpdated(true);
       setInitialHeight(newUserData.height || initialHeight);
       setInitialWeight(newUserData.weight || initialWeight);
     } catch (err) {
       console.error(err);
-      setSuccess(false);
+      setSuccess("");
       setError("Something went wrong");
     }
   }
@@ -68,7 +68,7 @@ export default function UpdateParameters() {
         </p>
       </div>
       {error && <Alert className="alert error">{error}</Alert>}
-      {success && <Alert className="alert success">Parameters updated!</Alert>}
+      {success && <Alert className="alert success">{success}</Alert>}
       <form onSubmit={updateUser}>
         <InputText
           value={weight}
@@ -81,8 +81,8 @@ export default function UpdateParameters() {
           min={40}
           max={250}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
         <InputText
@@ -96,8 +96,8 @@ export default function UpdateParameters() {
           min={120}
           max={250}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
         <Button type="submit" className="variant-solid-neutral size-3">

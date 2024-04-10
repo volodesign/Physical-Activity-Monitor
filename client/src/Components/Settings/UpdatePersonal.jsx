@@ -29,7 +29,8 @@ export default function UpdatePersonal() {
   const [initialCountry, setInitialCountry] = useState("");
 
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
+
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
@@ -89,7 +90,7 @@ export default function UpdatePersonal() {
 
       await axios.post("http://localhost:3232/api/updateUser", newUserData);
       setError("");
-      setSuccess(true);
+      setSuccess("Personal information updated!");
       setUpdated(true);
       setInitialFirstName(newUserData.first_name || initialFirst_name);
       setInitialLastName(newUserData.last_name || initialLast_name);
@@ -100,7 +101,7 @@ export default function UpdatePersonal() {
       setInitialCountry(newUserData.country || initialCountry);
     } catch (err) {
       console.error(err);
-      setSuccess(false);
+      setSuccess("");
       setError("Something went wrong");
     }
   }
@@ -116,9 +117,7 @@ export default function UpdatePersonal() {
         </p>
       </div>
       {error && <Alert className="alert error">{error}</Alert>}
-      {success && (
-        <Alert className="alert success">Personal information updated!</Alert>
-      )}
+      {success && <Alert className="alert success">{success}</Alert>}
       <form onSubmit={updateUser}>
         <InputText
           value={first_name}
@@ -129,8 +128,8 @@ export default function UpdatePersonal() {
           errorMessage="You must add your name"
           required={false}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
 
@@ -143,8 +142,8 @@ export default function UpdatePersonal() {
           errorMessage="You must add your last name"
           required={false}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
 
@@ -157,8 +156,8 @@ export default function UpdatePersonal() {
           errorMessage="You must add your middle"
           required={false}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
 
@@ -171,8 +170,8 @@ export default function UpdatePersonal() {
           errorMessage="Select your gender"
           required={false}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
 
@@ -186,8 +185,8 @@ export default function UpdatePersonal() {
           errorMessage="You must be older than 16 to reate an account"
           min={16}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
 
@@ -200,8 +199,8 @@ export default function UpdatePersonal() {
           errorMessage="Select your country"
           required={false}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
 
@@ -215,8 +214,8 @@ export default function UpdatePersonal() {
           errorMessage="Phone number must be in format 0660123456"
           pattern="^\d{10}$"
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
         <Button type="submit" className="variant-solid-neutral size-3">

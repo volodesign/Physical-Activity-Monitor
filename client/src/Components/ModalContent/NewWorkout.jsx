@@ -25,7 +25,7 @@ export default function NewWorkout(props) {
         workoutData
       );
       props.setUpdated(true);
-      props.setSuccess();
+      props.setSuccess("Workout created");
     } catch (err) {
       console.log(err);
     }

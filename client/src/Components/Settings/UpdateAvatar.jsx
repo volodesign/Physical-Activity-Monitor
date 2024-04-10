@@ -10,8 +10,7 @@ export default function UpdateAvatar() {
   const [avatar, setAvatar] = useState("");
   const [initialAvatar, setInitialAvatar] = useState("");
   const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
   const fileInputRef = useRef(null);
   const [previewURL, setPreviewURL] = useState(null);
   const [updated, setUpdated] = useState(false);
@@ -40,7 +39,7 @@ export default function UpdateAvatar() {
 
   const deleteAvatar = async () => {
     setError("");
-    setSuccess(false);
+    setSuccess("");
     setIsLoading(true);
     try {
       const response = await axios.post(
@@ -49,18 +48,17 @@ export default function UpdateAvatar() {
       );
       if (response.status === 200) {
         setError("");
-        setSuccess(true);
-        setSuccessMessage("Avatar deleted!");
+        setSuccess("Avatar deleted!");
         setInitialAvatar(user.avatar);
         setPreviewURL(null);
       } else {
-        setSuccess(false);
+        setSuccess("");
         setError("Something went wrong");
       }
       setUpdated(true);
     } catch (error) {
       console.error("Error deleting avatar:", error);
-      setSuccess(false);
+      setSuccess("");
       setError("Something went wrong");
     }
     setIsLoading(false);
@@ -70,7 +68,7 @@ export default function UpdateAvatar() {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-    setSuccess(false);
+    setSuccess("");
     try {
       const formData = new FormData();
       formData.append("file", avatar);
@@ -91,18 +89,17 @@ export default function UpdateAvatar() {
 
       if (response.status === 200) {
         setError("");
-        setSuccess(true);
-        setSuccessMessage("Avatar updated!");
+        setSuccess("Avatar updated!");
         setInitialAvatar(previewURL);
       } else {
-        setSuccess(false);
+        setSuccess("");
         setError("Something went wrong");
         setInitialAvatar(user.avatar);
       }
       setUpdated(true);
     } catch (err) {
       console.error("Error updating avatar:", err);
-      setSuccess(false);
+      setSuccess("");
       setError("Something went wrong");
       setInitialAvatar(user.avatar);
     }
@@ -120,7 +117,7 @@ export default function UpdateAvatar() {
         </p>
       </div>
       {error && <Alert className="alert error">{error}</Alert>}
-      {success && <Alert className="alert success">{successMessage}</Alert>}
+      {success && <Alert className="alert success">{success}</Alert>}
 
       <form onSubmit={updateAvatar}>
         <div className="avatar-upload">

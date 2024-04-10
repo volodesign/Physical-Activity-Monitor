@@ -21,14 +21,15 @@ export default function EditWorkout(props) {
       };
 
       await axios.post(
-        `http://localhost:3232/api/workouts/update${props.workout._id}`,
+        `http://localhost:3232/api/workouts/update/${props.workout._id}`,
         workoutData
       );
-      props.setUpdated(true);
-      props.setSuccess();
     } catch (err) {
       console.log(err);
     }
+    props.setIsOpen(false);
+    props.setUpdated(true);
+    props.setSuccess("Workout updated!");
   }
 
   return (

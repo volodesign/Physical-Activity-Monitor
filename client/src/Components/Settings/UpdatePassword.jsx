@@ -7,26 +7,26 @@ import axios from "axios";
 export default function UpdatePassword() {
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
 
   async function updatePassword(e) {
     e.preventDefault();
 
     try {
       if (newPassword === "") {
-        setSuccess(false);
+        setSuccess("");
         setError("New password can't be empty");
       } else {
         await axios.post("http://localhost:3232/api/updatePassword", {
           newPassword,
         });
         setError("");
-        setSuccess(true);
+        setSuccess("Password updated!");
         setNewPassword("");
       }
     } catch (err) {
       console.error(err);
-      setSuccess(false);
+      setSuccess("");
       setError("Something went wrong");
     }
   }
@@ -42,7 +42,7 @@ export default function UpdatePassword() {
         </p>
       </div>
       {error && <Alert className="alert error">{error}</Alert>}
-      {success && <Alert className="alert success">Password updated!</Alert>}
+      {success && <Alert className="alert success">{success}</Alert>}
       <form onSubmit={updatePassword}>
         <InputText
           value={newPassword}
@@ -55,8 +55,8 @@ export default function UpdatePassword() {
           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
           isPassword={true}
           onFocus={() => {
-            setSuccess(false);
-            setError(false);
+            setSuccess("");
+            setError("");
           }}
         />
         <Button type="submit" className="variant-solid-neutral size-3">

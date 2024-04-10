@@ -8,19 +8,21 @@ import ModalPopup from "../Elements/ModalPopup";
 import NewWorkout from "../ModalContent/NewWorkout";
 
 export default function Workouts() {
-  const [workouts, setWorkouts] = useState([]);
+  const { user } = useContext(UserContext);
+
   const [loading, setLoading] = useState(true);
+  const [workouts, setWorkouts] = useState([]);
   const [updated, setUpdated] = useState(false);
+
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
-  const [successMessage, setSuccessMessage] = useState("");
-  const { user } = useContext(UserContext);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
     setError("");
-    setSuccess(false);
+    setSuccess("");
   };
 
   const closeModal = () => {
@@ -33,27 +35,7 @@ export default function Workouts() {
 
   const handleSuccess = (newValue) => {
     setError("");
-    setSuccessMessage("Workout created");
-    setSuccess(true);
-  };
-
-  const deleteWorkout = async (workoutID) => {
-    setError("");
-    setSuccess(false);
-    try {
-      await axios.post(
-        `http://localhost:3232/api/workouts/delete/${workoutID}`,
-        {}
-      );
-      setError("");
-      setSuccess(true);
-      setSuccessMessage("Workout deleted!");
-      setUpdated(true);
-    } catch (error) {
-      setSuccess(false);
-      setError("Something went wrong");
-      console.error("Error deleting workout:", error);
-    }
+    setSuccess(newValue);
   };
 
   useEffect(() => {
@@ -101,7 +83,7 @@ export default function Workouts() {
         </ModalPopup>
       </div>
       {error && <Alert className="alert error">{error}</Alert>}
-      {success && <Alert className="alert success">{successMessage}</Alert>}
+      {success && <Alert className="alert success">{success}</Alert>}
       <div className="workouts-list-container">
         {workouts.length === 0 || !workouts ? (
           <p className="text-size-4 text-weight-regular text-style-grey">
@@ -115,7 +97,9 @@ export default function Workouts() {
               <WorkoutItem
                 key={index}
                 workout={workouts}
-                onDelete={() => deleteWorkout(workouts._id)}
+                onEdit={handleUpdate}
+                setUpdated={handleUpdate}
+                setSuccess={handleSuccess}
               />
             ))
         )}
