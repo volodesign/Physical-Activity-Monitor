@@ -58,6 +58,34 @@ router.post("/create", auth, async (req, res) => {
   }
 });
 
+router.post("/update/:id", auth, async (req, res) => {
+  const { type, duration, calories } = req.body;
+  const workoutId = req.params.id;
+
+  try {
+    const user = await User.findById(req.user);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const workout = await Workout.findOneAndUpdate(
+      { _id: workoutId, user: req.user },
+      { type, duration, calories },
+      { new: true }
+    );
+
+    if (!workout) {
+      return res.status(404).json({ message: "Workout not found" });
+    }
+
+    res.status(200).json({ message: "Workout updated successfully", workout });
+  } catch (error) {
+    console.error("Error updating workout:", error);
+    res.status(500).send("Error updating workout");
+  }
+});
+
 //get all user workouts
 router.get("/getdata/:userId", auth, async (req, res) => {
   const userId = req.params.userId;

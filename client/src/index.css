@@ -61,6 +61,7 @@
   align-items: center;
   gap: 48px;
 }
+
 .app-container {
   margin-bottom: 80px;
   max-width: 800px;
@@ -69,6 +70,20 @@
   flex-direction: column;
   justify-content: center;
   gap: 24px;
+}
+
+.leaderboard-container {
+  margin-bottom: 80px;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.table-container {
+  overflow: auto;
 }
 
 .settings-form-container {

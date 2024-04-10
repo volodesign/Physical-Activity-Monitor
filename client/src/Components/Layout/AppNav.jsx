@@ -10,6 +10,11 @@ export default function AppNav() {
     navigate(path);
   };
 
+  const leaderboardNavigate = () => {
+    const path = "/app/leaderboard";
+    navigate(path);
+  };
+
   const appNavigate = () => {
     const path = "/app";
     navigate(path);
@@ -29,6 +34,12 @@ export default function AppNav() {
           className="size-link-3 variant-link-neutral"
         >
           Files
+        </Button>
+        <Button
+          onClick={leaderboardNavigate}
+          className="size-link-3 variant-link-neutral"
+        >
+          Leaderboard
         </Button>
       </div>
     </>

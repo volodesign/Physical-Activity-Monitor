@@ -66,13 +66,6 @@ export default function WorkoutItem({ workout, onDelete, onEdit }) {
           >
             Delete
           </Button>
-          <Button
-            className="variant-soft-neutral size-3"
-            type="button"
-            onClick={() => onEdit(workout._id)}
-          >
-            Edit
-          </Button>
         </div>
       </div>
     </>
