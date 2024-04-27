@@ -72,6 +72,13 @@
   gap: 24px;
 }
 
+.date-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
 .leaderboard-container {
   margin-bottom: 80px;
   max-width: 800px;
@@ -208,4 +215,8 @@ form > button {
 .logo-button:active > svg {
   height: 28px;
   width: 28px;
+}
+
+.datepicker {
+  display: none;
 }

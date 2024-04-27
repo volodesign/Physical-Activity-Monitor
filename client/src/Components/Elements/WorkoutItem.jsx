@@ -76,7 +76,7 @@ export default function WorkoutItem({ workout, setUpdated, setSuccess }) {
       content = <i className="fa-solid fa-dumbbell fa-lg"></i>;
       break;
     case "Running":
-      content = <i class="fa-solid fa-person-running fa-lg"></i>;
+      content = <i className="fa-solid fa-person-running fa-lg"></i>;
       break;
     case "Swimming":
       content = <i className="fa-solid fa-person-swimming fa-lg"></i>;

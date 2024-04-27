@@ -98,4 +98,31 @@ router.get("/getdata/:userId", auth, async (req, res) => {
   }
 });
 
+//get all user workouts by date
+router.get("/getdata/:userId/:date", auth, async (req, res) => {
+  const userId = req.params.userId;
+  const targetDate = new Date(req.params.date);
+  try {
+    const userWorkouts = await Workout.find({
+      user: userId,
+      date: {
+        $gte: new Date(
+          targetDate.getFullYear(),
+          targetDate.getMonth(),
+          targetDate.getDate()
+        ), // Greater than or equal to start of the day
+        $lt: new Date(
+          targetDate.getFullYear(),
+          targetDate.getMonth(),
+          targetDate.getDate() + 1
+        ), // Less than the start of the next day
+      },
+    });
+    res.json(userWorkouts);
+  } catch (error) {
+    console.error("Error fetching user workouts by date:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 module.exports = router;
