@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
+import ReCAPTCHA from "react-google-recaptcha";
+
 import { useNavigate } from "react-router-dom";
 import InputText from "../Elements/InputText";
 import Dropdown from "../Elements/Dropdown";
@@ -23,6 +25,8 @@ export default function Register() {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
 
+  const [capVal, setCapVal] = useState("");
+
   const [error, setError] = useState("");
   const [existedUser, setExistingUser] = useState(false);
 
@@ -31,6 +35,12 @@ export default function Register() {
 
   async function register(e) {
     e.preventDefault();
+    setError("");
+
+    if (!capVal) {
+      setError("You must complete the captcha");
+      return;
+    }
 
     try {
       const registerData = {
@@ -207,6 +217,11 @@ export default function Register() {
             errorMessage="This doesn't look like correct height"
             min={120}
             max={250}
+          />
+
+          <ReCAPTCHA
+            sitekey="6LeH38gpAAAAAEHTdBzipFOEXGYASM7R_PmGAgL3"
+            onChange={(val) => setCapVal(val)}
           />
 
           <Button type="Submit" className="variant-solid-neutral size-3">
