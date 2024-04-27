@@ -12,6 +12,7 @@ import ResetPassword from "./Components/Auth/ResetPassword";
 import ForgotPasswordSuccess from "./Components/Auth/ForgotPasswordSuccess";
 import ResetPasswordSuccess from "./Components/Auth/ResetPasswordSuccess";
 import Leaderboard from "./Components/App/Leaderboard";
+import About from "./Components/About";
 
 function Router() {
   const { loggedIn } = useContext(AuthContext);
@@ -45,6 +46,7 @@ function Router() {
             <Route path="/app/files" element={<Files />} />
             <Route path="/app/settings" element={<Settings />} />
             <Route path="/app/leaderboard" element={<Leaderboard />} />
+            <Route path="/app/about" element={<About />} />
           </>
         )}
       </Routes>

@@ -20,6 +20,11 @@ export default function DropdownProfile() {
     setIsOpen(false);
   };
 
+  const aboutNavigate = () => {
+    navigate("/app/about");
+    setIsOpen(false);
+  };
+
   const toggleColorScheme = () => {
     const newColorScheme =
       document.documentElement.getAttribute("data-theme") === "light"
@@ -78,6 +83,14 @@ export default function DropdownProfile() {
                   className="variant-dropdown size-2"
                 >
                   Change theme
+                </Button>
+              </li>
+              <li>
+                <Button
+                  onClick={aboutNavigate}
+                  className="variant-dropdown size-2"
+                >
+                  About this app
                 </Button>
               </li>
               <li>
